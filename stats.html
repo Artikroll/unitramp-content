@@ -1,0 +1,135 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow">
+<title>Статистика контента UNITRAMP</title><style>
+:root{--navy:#121B2B;--acc:#1F5EDB;--line:#E1E4EA;--muted:#667085;--bg:#F4F5F7;--good:#E8F5E9;--low:#FDECEC}*{box-sizing:border-box}
+body{margin:0;font:15px/1.5 -apple-system,Arial,sans-serif;background:var(--bg);color:#1B2433}
+.top{position:sticky;top:0;background:var(--navy);color:#fff;padding:14px 16px;z-index:3}.top h1{margin:0 0 10px;font-size:18px}.top a{color:#9EBEFF;font-size:14px;font-weight:400;margin-left:10px}
+.row{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}.btn{border:1px solid #3A4760;background:transparent;color:#fff;border-radius:6px;padding:6px 12px;font:inherit;cursor:pointer}.btn.on{background:#fff;color:var(--navy)}
+.sm{border:0;background:#2A3650;color:#fff;border-radius:5px;padding:3px 10px;font:inherit;font-size:13px;cursor:pointer}.sm.on{background:var(--acc)}
+main{max-width:980px;margin:0 auto;padding:16px}section{background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-bottom:14px}
+h2{font-size:16px;margin:0 0 10px}.muted{color:var(--muted);font-size:13px}.note{background:#FFF8E1;border:1px solid #F5DE8A;border-radius:8px;padding:10px 12px;font-size:13px;margin-bottom:14px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}.kpi{border:1px solid var(--line);border-radius:8px;padding:10px 12px}.kpi b{display:block;font-size:22px}.kpi span{font-size:12px;color:var(--muted)}
+.tw{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:14px}th,td{border-bottom:1px solid var(--line);padding:7px 8px;text-align:left;vertical-align:top}th{font-size:12px;color:var(--muted);font-weight:600;cursor:pointer;white-space:nowrap}td.n,th.n{text-align:right;white-space:nowrap}
+tr.tot td{font-weight:700;border-top:2px solid var(--navy)}tr.top3 td{background:var(--good)}tr.bot3 td{background:var(--low)}.tag{display:inline-block;font-size:11px;border-radius:4px;padding:1px 6px;background:#EEF2FA;color:#344054;margin-right:4px}
+ul{margin:0;padding-left:20px}li{margin-bottom:6px}
+</style></head><body>
+<div class="top"><h1>Статистика контента UNITRAMP <a href="index.html">Контент-план →</a><a href="grafik.html">График публикаций →</a></h1>
+<div class="row" id="months"></div><div class="row" id="plats"></div></div>
+<main id="app"></main>
+<script>
+/* Как добавить новый месяц: скопировать объект месяца в MONTHS, поменять key/label/period/plan, items и notes. */
+const MONTHS=[
+{key:'2026-10',label:'Октябрь 2026 · месяц 1',period:'29.09–20.10.2026, сняты 20.10',plan:'index.html',
+extra:'ВК сообщество за 30 дней к предыдущим 30: просмотры контента 4,6 тыс. (×7), охват 798 (×5,8), посещения 428 (×6), клипы 2,2 тыс. просмотров (×9). Подписчики: ВК 1 827 (−1), Instagram 903 (+8), YouTube 2,17 тыс. (~+10), TG Антона 173, TG Романа 60. Переходов на сайт с постов ВК 0. До нас Shorts набирали ~150 просмотров на ролик.',
+notes:[
+'Все сравнения только внутри наших цифр. В абсолюте охваты очень малы (1 000 на ролик против сотен тысяч у заметных роликов ниши), поэтому это рекомендации, а не «работает / не работает».',
+'Относительно больше набирали: отзыв клиента (АРМИРУМ, 972 в Instagram), совет собственника (Гамза, 1 300 в Shorts за 2 дня), вау-объект с людьми (интерактивные игры 1 800, «ТикиТаки» 1 600).',
+'Процесс и производство: меньше всех в Shorts (башня паука 217), но выше среднего у подписчиков Telegram, ВК и Instagram.',
+'Меньше всего набирали длинные видео (5 обзоров ВК = 98) и клипы, продублированные постом на стену ВК (3–24).',
+'Охват падал к концу месяца на всех площадках: TG Антона 118 → 61 в среднем по неделям, канал Романа 62 → 24, ВК неделя 13–20.10 −55%.',
+'Главный пробел: нет следующего шага. С постов ВК 0 переходов, подписчики ВК −1.'],
+items:[
+['YouTube','29.09','К-01','Shorts','«ТикиТаки», Череповец: парк для всей семьи',1600,11],
+['YouTube','04.10','К-02','Shorts','Открытие интерактивного парка в Иркутске',1000,2],
+['YouTube','05.10','К-03','Shorts','«ТикиТаки»: кафе и зоны для взрослых',1100,5],
+['YouTube','08.10','М1-05','Видео','Интервью Гамзы, парк «ДвижОк»',52,1],
+['YouTube','10.10','К-04','Shorts','Тестовая сборка башни паука для Якутска',217,1],
+['YouTube','12.10','К-05','Shorts','«ТикиТаки»: интерактивные игры для всей семьи',1800,31],
+['YouTube','17.10','К-06','Shorts','Главный совет тем, кто собирается открыть парк',1300,10],
+['YouTube','19.10','К-07','Shorts','Завершили монтаж детского парка в Валуйках',1100,11],
+['ВК','29.09','М1-01','Пост','Закреп «О нас»',334,4],
+['ВК','29.09','К-01','Клип','«ТикиТаки», Череповец: парк для всей семьи',442,5],
+['ВК','30.09','М1-02','Пост','«ТикиТаки», альбом + обзор',145,1],
+['ВК','30.09','М1-02','Видео','Обзор «ТикиТаки»',28,0],
+['ВК','01.10','М1-03','Пост','Где искать идеи: мы в Pinterest',136,2],
+['ВК','03.10','К-05','Клип','«ТикиТаки»: интерактивные игры',288,7],
+['ВК','03.10','М1-13','Клип','Рогатки, версия 1',182,2],
+['ВК','03.10','М1-13','Клип','Рогатки, версия 2',95,2],
+['ВК','04.10','В-01','Видео','Обзор «ДвижОк», Омск',42,1],
+['ВК','04.10','В-01','Пост','Обзор «ДвижОк», пост',68,1],
+['ВК','05.10','К-03','Клип','«ТикиТаки»: кафе и зоны для взрослых',130,2],
+['ВК','06.10','К-02','Клип','Открытие парка в Иркутске',124,2],
+['ВК','06.10','М1-04','Пост','Иркутск: горка сквозь проекцию',61,1],
+['ВК','08.10','М1-05','Видео','Интервью Гамзы',6,1],
+['ВК','08.10','М1-05','Пост','Летом выручка, зимой простой (Гамза)',54,1],
+['ВК','09.10','К-04','Клип','Тестовая сборка башни паука',89,0],
+['ВК','11.10','В-02','Видео','Выставка AAA2026',17,2],
+['ВК','12.10','М1-06','Пост','Почему мы собираем оборудование дважды',99,1],
+['ВК','12.10','В-02','Пост','Выставка AAA2026, пост',51,2],
+['ВК','13.10','М1-07','Пост','«Когда откроется мой парк?»',50,1],
+['ВК','15.10','М1-08','Пост','Отзыв АРМИРУМ',55,3],
+['ВК','16.10','М1-09','Пост','Опрос недели',51,2],
+['ВК','17.10','К-06','Клип','Главный совет тем, кто открывает парк',26,1],
+['ВК','18.10','В-03','Пост','Заколодкин, «Точка роста», пост',12,0],
+['ВК','19.10','В-03','Видео','Заколодкин, «Точка роста»',5,0],
+['ВК','20.10','К-07','Клип','Валуйки: монтаж завершён',14,0],
+['ВК','20.10','М1-10','Пост','Кто на самом деле платит за билет',22,0],
+['Telegram','29.09','М1-01','Канал Антона','Закреп «О нас»',127,8],
+['Telegram','30.09','М1-02','Канал Антона','«ТикиТаки», Череповец',119,7],
+['Telegram','01.10','М1-03','Канал Антона','Мы в Pinterest',110,6],
+['Telegram','03.10','М1-13','Канал Антона','Интерактив собственного производства (видео)',117,6],
+['Telegram','06.10','М1-04','Канал Антона','Открыли парк в Иркутске',82,6],
+['Telegram','08.10','М1-05','Канал Антона','Летом выручка, зимой простой (Гамза)',85,6],
+['Telegram','09.10','М1-06','Канал Антона','Башня паука для Якутска (видео)',93,8],
+['Telegram','13.10','М1-07','Канал Антона','От договора до открытия',68,6],
+['Telegram','15.10','М1-08','Канал Антона','Ниндзя-зал АРМИРУМ, Омск',64,5],
+['Telegram','16.10','М1-09','Канал Антона','Опрос',50,3],
+['Telegram','20.10','М1-10','Канал Антона','Парк для детей или для всей семьи?',18,5],
+['Telegram','29.09','И-01','Канал Романа','И-01',62,5],
+['Telegram','01.10','—','Канал Романа','Альбом от Романа',66,6],
+['Telegram','05.10','И-08','Канал Романа','Почему всё меньше батутов',56,5],
+['Telegram','07.10','И-02','Канал Романа','И-02',58,3],
+['Telegram','10.10','И-06','Канал Романа','Гамза, «Точка роста»',45,8],
+['Telegram','12.10','И-09','Канал Романа','AAA2026: цены',45,5],
+['Telegram','14.10','И-03','Канал Романа','И-03',45,5],
+['Telegram','16.10','—','Канал Романа','Альбом',36,3],
+['Telegram','17.10','И-07','Канал Романа','Ниндзя-разбор',31,5],
+['Telegram','19.10','И-10','Канал Романа','Заколодкин: 3 цифры',24,5],
+['Instagram','','М1-08','Reels','Отзыв АРМИРУМ',972,48],
+['Instagram','','К-06','Reels','С чего начинать парк (совет Гамзы)',400,11],
+['Instagram','','М1-05','Карусель','Интервью Гамзы',328,10],
+['Instagram','','М1-10','Карусель','Кто платит за билет',328,8],
+['Instagram','','К-04','Reels','Башня паука',283,11],
+['Instagram','','М1-04','Карусель','Иркутск, горка сквозь проекцию',283,14],
+['Instagram','','М1-07','Карусель','Когда откроется ваш парк',267,7],
+['Instagram','','—','Карусель','Помещение есть. С чего начать',258,6],
+['Instagram','','К-07','Reels','Валуйки',231,6],
+['Instagram','','М1-03','Фото','Мы в Pinterest',193,10],
+['Instagram','','—','Сторис','Сторис 1',104,5],
+['Instagram','','—','Сторис','Сторис 2',103,3],
+['Instagram','','—','Сторис','Сторис 3',80,2],
+['Instagram','','—','Сторис','Сторис 4',73,1],
+['Pinterest','','—','~50 пинов','Все пины месяца, 2 в день (11 досок)',2800,null]
+]}
+];
+const PLATS=['Все','YouTube','ВК','Telegram','Instagram','Pinterest'];
+let st={m:MONTHS.length-1,p:'Все',sort:'v'};
+try{const s=JSON.parse(localStorage.getItem('ut-stats')||'{}');if(s.m!=null&&MONTHS[s.m])st.m=s.m;if(s.p)st.p=s.p;}catch(e){}
+const fmt=n=>n==null?'—':n.toLocaleString('ru-RU');
+function save(){try{localStorage.setItem('ut-stats',JSON.stringify({m:st.m,p:st.p}))}catch(e){}}
+function bar(){
+ document.getElementById('months').innerHTML=MONTHS.map((m,i)=>`<button class="btn${i==st.m?' on':''}" data-m="${i}">${m.label}</button>`).join('');
+ document.getElementById('plats').innerHTML=PLATS.map(p=>`<button class="sm${p==st.p?' on':''}" data-p="${p}">${p}</button>`).join('');
+}
+function render(){
+ bar();const M=MONTHS[st.m];const all=M.items.map(r=>({pl:r[0],d:r[1],id:r[2],f:r[3],t:r[4],v:r[5],i:r[6]}));
+ const by={};all.forEach(r=>{(by[r.pl]=by[r.pl]||{n:0,v:0,i:0,best:null});const b=by[r.pl];b.n+=r.pl=='Pinterest'?50:1;b.v+=r.v||0;b.i+=r.i||0;if(!b.best||r.v>b.best.v)b.best=r;});
+ const plats=PLATS.slice(1).filter(p=>by[p]).sort((a,b)=>by[b].v-by[a].v);
+ const T={n:0,v:0,i:0};plats.forEach(p=>{if(p!='Pinterest')T.n+=by[p].n;T.v+=by[p].v;T.i+=by[p].i;});
+ let h=`<div class="note">${M.notes[0]}</div>`;
+ h+=`<section><h2>${M.label} <span class="muted">· ${M.period} · <a href="${M.plan}">контент-план месяца</a></span></h2><div class="kpis">
+ <div class="kpi"><b>${fmt(T.n)}</b><span>публикаций + ~50 пинов</span></div><div class="kpi"><b>${fmt(T.v)}</b><span>просмотров</span></div><div class="kpi"><b>${fmt(T.i)}</b><span>взаимодействий</span></div></div></section>`;
+ h+=`<section><h2>По площадкам</h2><div class="tw"><table><tr><th>Площадка</th><th class="n">Публикаций</th><th class="n">Просмотры</th><th class="n">Взаимодействия</th><th>Больше всего</th></tr>`+
+ plats.map(p=>{const b=by[p];return `<tr><td>${p}</td><td class="n">${p=='Pinterest'?'~50':b.n}</td><td class="n">${fmt(b.v)}</td><td class="n">${p=='Pinterest'?'—':fmt(b.i)}</td><td>${p=='Pinterest'?'2 пина в день':b.best.t+', '+fmt(b.best.v)}</td></tr>`}).join('')+
+ `<tr class="tot"><td>Итого</td><td class="n">${T.n} + ~50</td><td class="n">${fmt(T.v)}</td><td class="n">${fmt(T.i)}</td><td></td></tr></table></div><p class="muted">${M.extra}</p></section>`;
+ let rows=all.filter(r=>st.p=='Все'||r.pl==st.p);
+ rows.sort((a,b)=>st.sort=='d'?(a.d.split('.').reverse().join('').localeCompare(b.d.split('.').reverse().join(''))):(b[st.sort]??-1)-(a[st.sort]??-1));
+ const ranked=rows.filter(r=>r.pl!='Pinterest'&&r.f!='Сторис').slice().sort((a,b)=>b.v-a.v);const top=new Set(ranked.slice(0,3)),bot=new Set(ranked.slice(-3));
+ h+=`<section><h2>Публикации ${st.p=='Все'?'':'· '+st.p} <span class="muted">· ${rows.length} шт. · зелёным 3 с наибольшими просмотрами, красным 3 с наименьшими</span></h2><div class="tw"><table><tr><th data-s="d">Дата</th><th>Площадка</th><th>ID</th><th>Формат</th><th>Публикация</th><th class="n" data-s="v">Просмотры ▾</th><th class="n" data-s="i">Взаим.</th></tr>`+
+ rows.map(r=>`<tr class="${top.has(r)?'top3':bot.has(r)?'bot3':''}"><td>${r.d||'—'}</td><td>${r.pl}</td><td>${r.id}</td><td><span class="tag">${r.f}</span></td><td>${r.t}</td><td class="n">${fmt(r.v)}</td><td class="n">${fmt(r.i)}</td></tr>`).join('')+`</table></div><p class="muted">Нажми на «Дата», «Просмотры» или «Взаим.», чтобы отсортировать. Взаимодействия: лайки, реакции, комментарии, репосты. В Instagram даты не указаны, цифры за последние 30 дней из профессиональной панели.</p></section>`;
+ h+=`<section><h2>Выводы месяца для следующего плана</h2><ul>${M.notes.slice(1).map(n=>`<li>${n}</li>`).join('')}</ul></section>`;
+ document.getElementById('app').innerHTML=h;
+}
+document.addEventListener('click',e=>{const t=e.target.closest('[data-m],[data-p],[data-s]');if(!t)return;
+ if(t.dataset.m!=null)st.m=+t.dataset.m;else if(t.dataset.p)st.p=t.dataset.p;else st.sort=t.dataset.s;save();render();});
+render();
+</script></body></html>
