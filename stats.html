@@ -18,7 +18,13 @@ ul{margin:0;padding-left:20px}.list{font-size:14px}.li{display:flex;gap:8px;alig
 <script>
 /* Как добавить новый месяц: скопировать объект месяца в MONTHS, поменять key/label/period/plan, items и notes. */
 const MONTHS=[
-{key:'2026-10',label:'Октябрь 2026 · месяц 1',period:'29.09–20.10.2026, сняты 20.10',plan:'index.html',
+{key:'2026-10',label:'Октябрь · месяц 1',period:'29.09–20.10.2026, цифры сняты 20.10',plan:'plan-m1.html',
+managers:[
+ {name:'Александр Казанцев',ig:null,tg:{link:'https://t.me/chestno_o_parkah',subs:17,posts:0,views:null,note:'последний пост 07.09'}},
+ {name:'Тюкавкина',ig:null,tg:null},
+ {name:'Журман',ig:null,tg:null},
+ {name:'Роман Сотников',ig:null,tg:null}
+],
 extra:'ВК сообщество за 30 дней к предыдущим 30: просмотры контента 4,6 тыс. (×7), охват 798 (×5,8), посещения 428 (×6), клипы 2,2 тыс. просмотров (×9). Подписчики: ВК 1 827 (−1), Instagram 903 (+8), YouTube 2,17 тыс. (~+10), TG Антона 173, TG Романа 60. Переходов на сайт с постов ВК 0. До нас Shorts набирали ~150 просмотров на ролик.',
 notes:[
 'Относительно больше набирали: отзыв клиента (АРМИРУМ, 972 в Instagram), совет собственника (Гамза, 1 300 в Shorts за 2 дня), вау-объект с людьми (интерактивные игры 1 800, «ТикиТаки» 1 600).',
@@ -98,10 +104,17 @@ items:[
 ['Instagram','','—','Сторис','Сторис 3',80,2],
 ['Instagram','','—','Сторис','Сторис 4',73,1],
 ['Pinterest','','—','60 пинов','Все пины месяца, 2 в день (11 досок)',2800,110]
-]}
+]},
+{key:'2026-11',label:'Ноябрь · месяц 2',period:'02.11–29.11.2026 (план)',plan:'index.html',template:true,extra:'',notes:[],
+managers:[{name:'Александр Казанцев',ig:null,tg:{link:'https://t.me/chestno_o_parkah',subs:null,posts:null,views:null}},{name:'Тюкавкина',ig:null,tg:null},{name:'Журман',ig:null,tg:null},{name:'Роман Сотников',ig:null,tg:null}],
+items:[]},
+{key:'2026-12',label:'Декабрь · месяц 3',period:'30.11–27.12.2026 (план)',plan:'index.html',template:true,extra:'',notes:[],
+managers:[{name:'Александр Казанцев',ig:null,tg:{link:'https://t.me/chestno_o_parkah',subs:null,posts:null,views:null}},{name:'Тюкавкина',ig:null,tg:null},{name:'Журман',ig:null,tg:null},{name:'Роман Сотников',ig:null,tg:null}],
+items:[]}
 ];
-const PLATS=['Все','YouTube','ВК','Telegram','Instagram','Pinterest'];
-let st={m:MONTHS.length-1,p:'Все',sort:'v'};
+const PLATS=['Все','YouTube','ВК','Telegram','Instagram','Pinterest','Менеджеры'];
+const LAST=MONTHS.map(m=>!m.template).lastIndexOf(true);
+let st={m:LAST,p:'Все',sort:'v'};
 try{const s=JSON.parse(localStorage.getItem('ut-stats')||'{}');if(s.m!=null&&MONTHS[s.m])st.m=s.m;if(s.p&&PLATS.includes(s.p))st.p=s.p;}catch(e){}
 const fmt=n=>n==null?'—':n.toLocaleString('ru-RU');
 const dkey=d=>d?d.split('.').reverse().join(''):'99';
@@ -129,16 +142,26 @@ function cp(id,b){const el=document.querySelector(`[data-cid="${id}"]`);if(!el)r
  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(ok,()=>fb(t,ok))}else fb(t,ok)}
 function fb(t,ok){const a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();try{document.execCommand('copy');ok()}catch(e){}a.remove()}
 function bar(){
- document.getElementById('months').innerHTML=MONTHS.map((m,i)=>`<button class="btn${i==st.m?' on':''}" data-m="${i}">${m.label}</button>`).join('');
+ document.getElementById('months').innerHTML=MONTHS.map((m,i)=>`<button class="btn${i==st.m?' on':''}" data-m="${i}">${m.label}${m.template?' <small style="opacity:.6">шаблон</small>':''}</button>`).join('');
  document.getElementById('plats').innerHTML=PLATS.map(p=>`<button class="sm${p==st.p?' on':''}" data-p="${p}">${p}</button>`).join('');
 }
 function agg(rows){const b={n:0,v:0,i:0,best:null};rows.forEach(r=>{b.n+=r.pl=='Pinterest'?60:1;b.v+=r.v||0;b.i+=r.i||0;if(!b.best||r.v>b.best.v)b.best=r;});return b;}
 function sorter(rows){return rows.sort((a,b)=>st.sort=='d'?dkey(a.d).localeCompare(dkey(b.d)):(b[st.sort]??-1)-(a[st.sort]??-1));}
+function mgrCell(x){if(!x)return '<td colspan="4" class="muted">не оформлено</td>';return `<td>${x.link?`<a href="${x.link}" target="_blank">открыть</a>`:'—'}</td><td class="n">${fmt(x.subs)}</td><td class="n">${fmt(x.posts)}</td><td class="n">${fmt(x.views)}${x.note?`<div class="muted">${x.note}</div>`:''}</td>`;}
+function mgrBlock(M){const L=M.managers||[];const done=L.filter(m=>m.ig&&m.tg).length;
+ return `<section><h2>Соцсети менеджеров · ${M.label} <span class="muted">· смарт-задача: Instagram и Telegram у каждого менеджера, оформлено полностью ${done} из ${L.length}</span></h2><div class="tw"><table>
+ <tr><th rowspan="2">Менеджер</th><th colspan="4">Instagram</th><th colspan="4">Telegram</th></tr>
+ <tr><th>Ссылка</th><th class="n">Подписчики</th><th class="n">Публикаций</th><th class="n">Просмотры</th><th>Ссылка</th><th class="n">Подписчики</th><th class="n">Публикаций</th><th class="n">Просмотры</th></tr>`+
+ L.map(m=>`<tr><td>${m.name}</td>${mgrCell(m.ig)}${mgrCell(m.tg)}</tr>`).join('')+`</table></div><p class="muted">Задача по Кириллу (09.10): клиент видит, кто с ним общается. Базовое оформление и пара публикаций, не поток контента.</p></section>`;}
 async function render(){
- bar();const M=MONTHS[st.m];const all=M.items.map(r=>({pl:r[0],d:r[1],id:r[2],f:r[3],t:r[4],v:r[5],i:r[6]}));
+ bar();const M=MONTHS[st.m];
+ if(st.p=='Менеджеры'){document.getElementById('app').innerHTML=mgrBlock(M);return;}
+ if(M.template){const plats=PLATS.slice(1,-1);const one=st.p!='Все';
+  document.getElementById('app').innerHTML=`<section><h2>${one?st.p+' · ':''}${M.label} <span class="muted">· ${M.period} · <a href="${M.plan}">контент-план месяца</a></span></h2><div class="kpis"><div class="kpi"><b>—</b><span>публикаций</span></div><div class="kpi"><b>—</b><span>просмотров</span></div><div class="kpi"><b>—</b><span>взаимодействий</span></div></div><p class="muted">Месяц в работе. Цифры и посты добавим после разбора в конце месяца.</p></section>`+
+  (one?`<section><p class="muted">Здесь будут посты ${st.p} за месяц целиком: текст, фото, видео и цифры по каждому.</p></section>`:`<section><h2>По площадкам</h2><div class="tw"><table><tr><th>Площадка</th><th class="n">Публикаций</th><th class="n">Просмотры</th><th class="n">Взаимодействия</th><th>Больше всего</th></tr>${plats.map(p=>`<tr><td>${p}</td><td class="n">—</td><td class="n">—</td><td class="n">—</td><td>—</td></tr>`).join('')}<tr class="tot"><td>Итого</td><td class="n">—</td><td class="n">—</td><td class="n">—</td><td></td></tr></table></div></section>`+mgrBlock(M));return;}const all=M.items.map(r=>({pl:r[0],d:r[1],id:r[2],f:r[3],t:r[4],v:r[5],i:r[6]}));
  const app=document.getElementById('app');
  if(st.p=='Все'){
-  const by={};PLATS.slice(1).forEach(p=>{const rr=all.filter(r=>r.pl==p);if(rr.length)by[p]=agg(rr);});
+  const by={};PLATS.slice(1,-1).forEach(p=>{const rr=all.filter(r=>r.pl==p);if(rr.length)by[p]=agg(rr);});
   const plats=Object.keys(by).sort((a,b)=>by[b].v-by[a].v);
   const T={n:0,v:0,i:0};plats.forEach(p=>{if(p!='Pinterest')T.n+=by[p].n;T.v+=by[p].v;T.i+=by[p].i;});
   let h=`<section><h2>${M.label} <span class="muted">· ${M.period} · <a href="${M.plan}">контент-план месяца</a></span></h2><div class="kpis">
@@ -150,6 +173,7 @@ async function render(){
   h+=`<section><h2>Все публикации <span class="muted">· ${rows.length} · полный пост с текстом и медиа во вкладке площадки</span></h2><div class="list">`+
   rows.map(r=>`<div class="li"><span class="ld">${r.d||'—'}</span><span class="tag">${r.pl}</span><span class="lt">${r.t}</span><span class="lv">${fmt(r.v)} <small>просм.</small> · ${fmt(r.i)} <small>взаим.</small></span></div>`).join('')+
   `</div><p class="muted">Сортировка: <a href="#" data-s="v">по просмотрам</a> · <a href="#" data-s="i">по взаимодействиям</a> · <a href="#" data-s="d">по дате</a></p></section>`;
+  h+=mgrBlock(M);
   h+=`<section><h2>Выводы месяца для следующего плана</h2><ul>${M.notes.map(n=>`<li>${n}</li>`).join('')}</ul></section>`;
   app.innerHTML=h;return;
  }
