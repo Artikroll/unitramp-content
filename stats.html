@@ -10,7 +10,7 @@ h2{font-size:16px;margin:0 0 10px}.muted{color:var(--muted);font-size:13px}.note
 .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}.kpi{border:1px solid var(--line);border-radius:8px;padding:10px 12px}.kpi b{display:block;font-size:22px}.kpi span{font-size:12px;color:var(--muted)}
 .tw{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:14px}th,td{border-bottom:1px solid var(--line);padding:7px 8px;text-align:left;vertical-align:top}th{font-size:12px;color:var(--muted);font-weight:600;cursor:pointer;white-space:nowrap}td.n,th.n{text-align:right;white-space:nowrap}
 tr.tot td{font-weight:700;border-top:2px solid var(--navy)}tr.top3 td{background:var(--good)}tr.bot3 td{background:var(--low)}.tag{display:inline-block;font-size:11px;border-radius:4px;padding:1px 6px;background:#EEF2FA;color:#344054;margin-right:4px}
-ul{margin:0;padding-left:20px}li{margin-bottom:6px}
+ul{margin:0;padding-left:20px}.list{font-size:14px}.li{display:flex;gap:8px;align-items:baseline;padding:5px 0;border-bottom:1px solid var(--line)}.ld{color:var(--muted);width:44px;flex:none}.lt{flex:1}.lv{white-space:nowrap}.lv small{color:var(--muted)}.post{margin-bottom:6px}.pstat{background:var(--navy);color:#fff;border-radius:10px 10px 0 0;padding:7px 14px;font-size:14px}.post article{border-top-left-radius:0;border-top-right-radius:0;margin-top:0}a{color:var(--acc)}li{margin-bottom:6px}
 </style></head><body>
 <div class="top"><h1>Статистика контента UNITRAMP <a href="index.html">Контент-план →</a><a href="grafik.html">График публикаций →</a></h1>
 <div class="row" id="months"></div><div class="row" id="plats"></div></div>
@@ -21,7 +21,6 @@ const MONTHS=[
 {key:'2026-10',label:'Октябрь 2026 · месяц 1',period:'29.09–20.10.2026, сняты 20.10',plan:'index.html',
 extra:'ВК сообщество за 30 дней к предыдущим 30: просмотры контента 4,6 тыс. (×7), охват 798 (×5,8), посещения 428 (×6), клипы 2,2 тыс. просмотров (×9). Подписчики: ВК 1 827 (−1), Instagram 903 (+8), YouTube 2,17 тыс. (~+10), TG Антона 173, TG Романа 60. Переходов на сайт с постов ВК 0. До нас Shorts набирали ~150 просмотров на ролик.',
 notes:[
-'Все сравнения только внутри наших цифр. В абсолюте охваты очень малы (1 000 на ролик против сотен тысяч у заметных роликов ниши), поэтому это рекомендации, а не «работает / не работает».',
 'Относительно больше набирали: отзыв клиента (АРМИРУМ, 972 в Instagram), совет собственника (Гамза, 1 300 в Shorts за 2 дня), вау-объект с людьми (интерактивные игры 1 800, «ТикиТаки» 1 600).',
 'Процесс и производство: меньше всех в Shorts (башня паука 217), но выше среднего у подписчиков Telegram, ВК и Instagram.',
 'Меньше всего набирали длинные видео (5 обзоров ВК = 98) и клипы, продублированные постом на стену ВК (3–24).',
@@ -74,62 +73,100 @@ items:[
 ['Telegram','15.10','М1-08','Канал Антона','Ниндзя-зал АРМИРУМ, Омск',64,5],
 ['Telegram','16.10','М1-09','Канал Антона','Опрос',50,3],
 ['Telegram','20.10','М1-10','Канал Антона','Парк для детей или для всей семьи?',18,5],
-['Telegram','29.09','И-01','Канал Романа','И-01',62,5],
-['Telegram','01.10','—','Канал Романа','Альбом от Романа',66,6],
-['Telegram','05.10','И-08','Канал Романа','Почему всё меньше батутов',56,5],
-['Telegram','07.10','И-02','Канал Романа','И-02',58,3],
-['Telegram','10.10','И-06','Канал Романа','Гамза, «Точка роста»',45,8],
-['Telegram','12.10','И-09','Канал Романа','AAA2026: цены',45,5],
-['Telegram','14.10','И-03','Канал Романа','И-03',45,5],
+['Telegram','29.09','И-01','Канал Романа','Обзор: семейный парк «Притяжение», Магнитогорск',62,5],
+['Telegram','01.10','—','Канал Романа','Альбом, переслан от Романа',66,6],
+['Telegram','05.10','И-03','Канал Романа','Из чего сегодня состоит большой активити-парк',56,5],
+['Telegram','07.10','И-04','Канал Романа','Выставка AAA2026 в Китае',58,3],
+['Telegram','10.10','И-05','Канал Романа','«Точка роста»: Дмитрий Гамза, 3 мысли',45,8],
+['Telegram','12.10','И-06','Канал Романа','AAA2026: цены, которые меня удивили',45,5],
+['Telegram','14.10','И-07','Канал Романа','Бизнес на полосах препятствий: Заколодкин',45,5],
 ['Telegram','16.10','—','Канал Романа','Альбом',36,3],
-['Telegram','17.10','И-07','Канал Романа','Ниндзя-разбор',31,5],
-['Telegram','19.10','И-10','Канал Романа','Заколодкин: 3 цифры',24,5],
-['Instagram','','М1-08','Reels','Отзыв АРМИРУМ',972,48],
-['Instagram','','К-06','Reels','С чего начинать парк (совет Гамзы)',400,11],
-['Instagram','','М1-05','Карусель','Интервью Гамзы',328,10],
-['Instagram','','М1-10','Карусель','Кто платит за билет',328,8],
-['Instagram','','К-04','Reels','Башня паука',283,11],
-['Instagram','','М1-04','Карусель','Иркутск, горка сквозь проекцию',283,14],
-['Instagram','','М1-07','Карусель','Когда откроется ваш парк',267,7],
-['Instagram','','—','Карусель','Помещение есть. С чего начать',258,6],
-['Instagram','','К-07','Reels','Валуйки',231,6],
-['Instagram','','М1-03','Фото','Мы в Pinterest',193,10],
+['Telegram','17.10','И-08','Канал Романа','Как открыть ниндзя-парк: разбор Романа',31,5],
+['Telegram','19.10','И-09','Канал Романа','Ниндзя-зал: 3 цифры от Заколодкина',24,5],
+['Instagram','13.10','М1-08','Reels','Отзыв АРМИРУМ',972,48],
+['Instagram','15.10','К-06','Reels','С чего начинать парк (совет Гамзы)',400,11],
+['Instagram','08.10','М1-05','Карусель','Интервью Гамзы',328,10],
+['Instagram','03.10','М1-10','Карусель','Кто платит за билет',328,8],
+['Instagram','01.10','М1-06','Reels','Башня паука',283,11],
+['Instagram','29.09','М1-04','Карусель','Иркутск, горка сквозь проекцию',283,14],
+['Instagram','10.10','М1-07','Карусель','Когда откроется ваш парк',267,7],
+['Instagram','17.10','М1-12','Карусель','Помещение есть. С чего начать',258,6],
+['Instagram','20.10','К-07','Reels','Валуйки',231,6],
+['Instagram','06.10','М1-03','Фото','Мы в Pinterest',193,10],
 ['Instagram','','—','Сторис','Сторис 1',104,5],
 ['Instagram','','—','Сторис','Сторис 2',103,3],
 ['Instagram','','—','Сторис','Сторис 3',80,2],
 ['Instagram','','—','Сторис','Сторис 4',73,1],
-['Pinterest','','—','~50 пинов','Все пины месяца, 2 в день (11 досок)',2800,null]
+['Pinterest','','—','60 пинов','Все пины месяца, 2 в день (11 досок)',2800,110]
 ]}
 ];
 const PLATS=['Все','YouTube','ВК','Telegram','Instagram','Pinterest'];
 let st={m:MONTHS.length-1,p:'Все',sort:'v'};
-try{const s=JSON.parse(localStorage.getItem('ut-stats')||'{}');if(s.m!=null&&MONTHS[s.m])st.m=s.m;if(s.p)st.p=s.p;}catch(e){}
+try{const s=JSON.parse(localStorage.getItem('ut-stats')||'{}');if(s.m!=null&&MONTHS[s.m])st.m=s.m;if(s.p&&PLATS.includes(s.p))st.p=s.p;}catch(e){}
 const fmt=n=>n==null?'—':n.toLocaleString('ru-RU');
+const dkey=d=>d?d.split('.').reverse().join(''):'99';
 function save(){try{localStorage.setItem('ut-stats',JSON.stringify({m:st.m,p:st.p}))}catch(e){}}
+/* Карточки постов берём из контент-плана месяца: панели index.html (0 TG Антона, 1 TG Романа, 2 ВК, 3 Instagram, 4 ВК Видео, 5 YouTube) */
+const PLAN={};
+async function loadPlan(url){
+ if(PLAN[url])return PLAN[url];
+ PLAN[url]={panes:{}};
+ try{const h=await fetch(url).then(r=>r.text());const d=new DOMParser().parseFromString(h,'text/html');
+  const css=d.querySelector('style');if(css&&!document.getElementById('plancss')){const el=document.createElement('style');el.id='plancss';el.textContent=css.textContent;document.head.insertBefore(el,document.head.firstChild);}
+  d.querySelectorAll('section.pane').forEach(p=>{const m={};p.querySelectorAll('article').forEach(a=>{const id=a.querySelector('.id')?.textContent.trim();if(id&&!m[id])m[id]=a.innerHTML.replace(/<button onclick="cp\('([^']+)'/g,(x,i)=>`<button onclick="cp('${i}',this,1)"`).replace(/ id="(p\d+_\d+b)"/g,' data-cid="$1"');});PLAN[url].panes[p.dataset.p]=m;});
+ }catch(e){}
+ return PLAN[url];
+}
+function panesFor(r){
+ if(r.pl=='Telegram')return r.f=='Канал Романа'?['1']:['0'];
+ if(r.pl=='ВК')return r.f=='Пост'?['2']:['4','2'];
+ if(r.pl=='YouTube')return['5'];
+ if(r.pl=='Instagram')return['3'];
+ return[];
+}
+function card(plan,r){for(const p of panesFor(r)){const h=plan.panes[p]?.[r.id];if(h)return h;}return '';}
+function cp(id,b){const el=document.querySelector(`[data-cid="${id}"]`);if(!el)return;const t=el.innerText;const ok=()=>{b.textContent='Скопировано';b.classList.add('done');setTimeout(()=>{b.textContent='Скопировать';b.classList.remove('done')},1500)};
+ if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(ok,()=>fb(t,ok))}else fb(t,ok)}
+function fb(t,ok){const a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();try{document.execCommand('copy');ok()}catch(e){}a.remove()}
 function bar(){
  document.getElementById('months').innerHTML=MONTHS.map((m,i)=>`<button class="btn${i==st.m?' on':''}" data-m="${i}">${m.label}</button>`).join('');
  document.getElementById('plats').innerHTML=PLATS.map(p=>`<button class="sm${p==st.p?' on':''}" data-p="${p}">${p}</button>`).join('');
 }
-function render(){
+function agg(rows){const b={n:0,v:0,i:0,best:null};rows.forEach(r=>{b.n+=r.pl=='Pinterest'?60:1;b.v+=r.v||0;b.i+=r.i||0;if(!b.best||r.v>b.best.v)b.best=r;});return b;}
+function sorter(rows){return rows.sort((a,b)=>st.sort=='d'?dkey(a.d).localeCompare(dkey(b.d)):(b[st.sort]??-1)-(a[st.sort]??-1));}
+async function render(){
  bar();const M=MONTHS[st.m];const all=M.items.map(r=>({pl:r[0],d:r[1],id:r[2],f:r[3],t:r[4],v:r[5],i:r[6]}));
- const by={};all.forEach(r=>{(by[r.pl]=by[r.pl]||{n:0,v:0,i:0,best:null});const b=by[r.pl];b.n+=r.pl=='Pinterest'?50:1;b.v+=r.v||0;b.i+=r.i||0;if(!b.best||r.v>b.best.v)b.best=r;});
- const plats=PLATS.slice(1).filter(p=>by[p]).sort((a,b)=>by[b].v-by[a].v);
- const T={n:0,v:0,i:0};plats.forEach(p=>{if(p!='Pinterest')T.n+=by[p].n;T.v+=by[p].v;T.i+=by[p].i;});
- let h=`<div class="note">${M.notes[0]}</div>`;
- h+=`<section><h2>${M.label} <span class="muted">· ${M.period} · <a href="${M.plan}">контент-план месяца</a></span></h2><div class="kpis">
- <div class="kpi"><b>${fmt(T.n)}</b><span>публикаций + ~50 пинов</span></div><div class="kpi"><b>${fmt(T.v)}</b><span>просмотров</span></div><div class="kpi"><b>${fmt(T.i)}</b><span>взаимодействий</span></div></div></section>`;
- h+=`<section><h2>По площадкам</h2><div class="tw"><table><tr><th>Площадка</th><th class="n">Публикаций</th><th class="n">Просмотры</th><th class="n">Взаимодействия</th><th>Больше всего</th></tr>`+
- plats.map(p=>{const b=by[p];return `<tr><td>${p}</td><td class="n">${p=='Pinterest'?'~50':b.n}</td><td class="n">${fmt(b.v)}</td><td class="n">${p=='Pinterest'?'—':fmt(b.i)}</td><td>${p=='Pinterest'?'2 пина в день':b.best.t+', '+fmt(b.best.v)}</td></tr>`}).join('')+
- `<tr class="tot"><td>Итого</td><td class="n">${T.n} + ~50</td><td class="n">${fmt(T.v)}</td><td class="n">${fmt(T.i)}</td><td></td></tr></table></div><p class="muted">${M.extra}</p></section>`;
- let rows=all.filter(r=>st.p=='Все'||r.pl==st.p);
- rows.sort((a,b)=>st.sort=='d'?(a.d.split('.').reverse().join('').localeCompare(b.d.split('.').reverse().join(''))):(b[st.sort]??-1)-(a[st.sort]??-1));
- const ranked=rows.filter(r=>r.pl!='Pinterest'&&r.f!='Сторис').slice().sort((a,b)=>b.v-a.v);const top=new Set(ranked.slice(0,3)),bot=new Set(ranked.slice(-3));
- h+=`<section><h2>Публикации ${st.p=='Все'?'':'· '+st.p} <span class="muted">· ${rows.length} шт. · зелёным 3 с наибольшими просмотрами, красным 3 с наименьшими</span></h2><div class="tw"><table><tr><th data-s="d">Дата</th><th>Площадка</th><th>ID</th><th>Формат</th><th>Публикация</th><th class="n" data-s="v">Просмотры ▾</th><th class="n" data-s="i">Взаим.</th></tr>`+
- rows.map(r=>`<tr class="${top.has(r)?'top3':bot.has(r)?'bot3':''}"><td>${r.d||'—'}</td><td>${r.pl}</td><td>${r.id}</td><td><span class="tag">${r.f}</span></td><td>${r.t}</td><td class="n">${fmt(r.v)}</td><td class="n">${fmt(r.i)}</td></tr>`).join('')+`</table></div><p class="muted">Нажми на «Дата», «Просмотры» или «Взаим.», чтобы отсортировать. Взаимодействия: лайки, реакции, комментарии, репосты. В Instagram даты не указаны, цифры за последние 30 дней из профессиональной панели.</p></section>`;
- h+=`<section><h2>Выводы месяца для следующего плана</h2><ul>${M.notes.slice(1).map(n=>`<li>${n}</li>`).join('')}</ul></section>`;
- document.getElementById('app').innerHTML=h;
+ const app=document.getElementById('app');
+ if(st.p=='Все'){
+  const by={};PLATS.slice(1).forEach(p=>{const rr=all.filter(r=>r.pl==p);if(rr.length)by[p]=agg(rr);});
+  const plats=Object.keys(by).sort((a,b)=>by[b].v-by[a].v);
+  const T={n:0,v:0,i:0};plats.forEach(p=>{if(p!='Pinterest')T.n+=by[p].n;T.v+=by[p].v;T.i+=by[p].i;});
+  let h=`<section><h2>${M.label} <span class="muted">· ${M.period} · <a href="${M.plan}">контент-план месяца</a></span></h2><div class="kpis">
+  <div class="kpi"><b>${fmt(T.n)}</b><span>публикаций + 60 пинов</span></div><div class="kpi"><b>${fmt(T.v)}</b><span>просмотров</span></div><div class="kpi"><b>${fmt(T.i)}</b><span>взаимодействий</span></div></div></section>`;
+  h+=`<section><h2>По площадкам</h2><div class="tw"><table><tr><th>Площадка</th><th class="n">Публикаций</th><th class="n">Просмотры</th><th class="n">Взаимодействия</th><th>Больше всего</th></tr>`+
+  plats.map(p=>{const b=by[p];return `<tr><td><a href="#" data-p="${p}">${p}</a></td><td class="n">${p=='Pinterest'?'60 пинов':b.n}</td><td class="n">${fmt(b.v)}</td><td class="n">${fmt(b.i)}</td><td>${p=='Pinterest'?'2 пина в день':b.best.t+', '+fmt(b.best.v)}</td></tr>`}).join('')+
+  `<tr class="tot"><td>Итого</td><td class="n">${T.n} + 60 пинов</td><td class="n">${fmt(T.v)}</td><td class="n">${fmt(T.i)}</td><td></td></tr></table></div><p class="muted">${M.extra}</p></section>`;
+  const rows=sorter(all.slice());
+  h+=`<section><h2>Все публикации <span class="muted">· ${rows.length} · полный пост с текстом и медиа во вкладке площадки</span></h2><div class="list">`+
+  rows.map(r=>`<div class="li"><span class="ld">${r.d||'—'}</span><span class="tag">${r.pl}</span><span class="lt">${r.t}</span><span class="lv">${fmt(r.v)} <small>просм.</small> · ${fmt(r.i)} <small>взаим.</small></span></div>`).join('')+
+  `</div><p class="muted">Сортировка: <a href="#" data-s="v">по просмотрам</a> · <a href="#" data-s="i">по взаимодействиям</a> · <a href="#" data-s="d">по дате</a></p></section>`;
+  h+=`<section><h2>Выводы месяца для следующего плана</h2><ul>${M.notes.map(n=>`<li>${n}</li>`).join('')}</ul></section>`;
+  app.innerHTML=h;return;
+ }
+ const rows=sorter(all.filter(r=>r.pl==st.p));const b=agg(rows);
+ let h=`<section><h2>${st.p} · ${M.label} <span class="muted">· ${M.period}</span></h2><div class="kpis">
+ <div class="kpi"><b>${st.p=='Pinterest'?'60':b.n}</b><span>${st.p=='Pinterest'?'пинов':'публикаций'}</span></div><div class="kpi"><b>${fmt(b.v)}</b><span>просмотров</span></div><div class="kpi"><b>${fmt(b.i)}</b><span>взаимодействий</span></div>
+ ${st.p=='Pinterest'?'':`<div class="kpi"><b>${fmt(Math.round(b.v/b.n))}</b><span>просмотров в среднем на публикацию</span></div>`}</div>
+ ${st.p=='ВК'?`<p class="muted">${M.extra.split('. Подписчики')[0]}.</p>`:''}
+ ${st.p=='Pinterest'?'<p class="muted">Пины ведутся по отдельному плану Pinterest, 2 в день в 11:00 и 19:30 МСК.</p>':`<p class="muted">Сортировка: <a href="#" data-s="v">по просмотрам</a> · <a href="#" data-s="i">по взаимодействиям</a> · <a href="#" data-s="d">по дате</a></p>`}</section>`;
+ if(st.p!='Pinterest'){
+  app.innerHTML=h+'<p class="muted">Загружаю посты…</p>';
+  const plan=await loadPlan(M.plan);
+  h+=rows.map((r,k)=>{const c=card(plan,r);return `<div class="post"><div class="pstat"><b>${k+1}.</b> ${r.d||'—'} · ${r.f} · <b>${fmt(r.v)}</b> просм. · <b>${fmt(r.i)}</b> взаим.</div>${c?`<article>${c}</article>`:`<article><header><span class="id">${r.id}</span><b>${r.t}</b></header><div class="meta">Поста нет в контент-плане (опубликован вне плана)</div></article>`}</div>`}).join('');
+ }
+ app.innerHTML=h;
 }
-document.addEventListener('click',e=>{const t=e.target.closest('[data-m],[data-p],[data-s]');if(!t)return;
- if(t.dataset.m!=null)st.m=+t.dataset.m;else if(t.dataset.p)st.p=t.dataset.p;else st.sort=t.dataset.s;save();render();});
+document.addEventListener('click',e=>{const t=e.target.closest('[data-m],[data-p],[data-s]');if(!t)return;if(t.tagName=='A')e.preventDefault();
+ if(t.dataset.m!=null)st.m=+t.dataset.m;else if(t.dataset.p)st.p=t.dataset.p;else st.sort=t.dataset.s;save();render();if(!t.dataset.s)scrollTo(0,0);});
 render();
 </script></body></html>
