@@ -29,7 +29,7 @@ tr.tot td{font-weight:700;border-top:2px solid var(--navy)}tr.go{cursor:pointer}
 ul{margin:0;padding-left:20px}li{margin-bottom:6px}
 </style></head><body>
 <div class="top"><div class="hd"><h1>Контент UNITRAMP · план и статистика</h1></div>
-<div class="bar" id="months"></div><div class="bar" id="plats"></div><div class="bar" id="people"></div></div>
+<div class="bar" id="months"></div><div class="bar" id="plats"></div></div>
 <main id="app"></main>
 <script>
 /* Данные по месяцам. Новый месяц: добавить объект в MONTHS (key, label, period, plan — архивная копия плана месяца, items, managers, notes, extra).
@@ -38,8 +38,7 @@ const MGR_INFO={
  'Александр Казанцев':{role:'Менеджер проектов',tg:'есть, обновляем',ig:'создать',card:'есть (Alex PROMO)',need:'портрет, список своих проектов, рабочий номер для Instagram'},
  'Екатерина Тюкавкина':{role:'Топ-менеджер проектов',tg:'создать',ig:'создать',card:'снять',need:'портрет, стаж и проекты, видео-визитка, рабочий номер для Instagram'},
  'Оксана Журман':{role:'Топ-менеджер проектов',tg:'создать',ig:'создать',card:'снять',need:'портрет, стаж и проекты, видео-визитка, рабочий номер для Instagram'},
- 'Кирилл Шувалов':{role:'Генеральный директор',tg:'создать',ig:'создать',card:'переснять',need:'портрет, согласовать тексты по интервью'},
- 'Роман Сотников':{role:'Учредитель',tg:'есть, @bestkidsparks',ig:'уточнить',card:'есть',need:'канал ведём по плану компании'}
+ 'Кирилл Шувалов':{role:'Генеральный директор',tg:'создать',ig:'создать',card:'переснять',need:'портрет, согласовать тексты по интервью'}
 };
 const MONTHS=[
 {key:'2026-10',label:'Октябрь · месяц 1',period:'29.09–20.10.2026, цифры сняты 20.10',plan:'plan-m1.html',
@@ -47,8 +46,7 @@ managers:[
  {name:'Александр Казанцев',ig:null,tg:{link:'https://t.me/chestno_o_parkah',subs:17,posts:0,views:null,note:'последний пост 07.09'}},
  {name:'Екатерина Тюкавкина',ig:null,tg:null},
  {name:'Оксана Журман',ig:null,tg:null},
- {name:'Кирилл Шувалов',ig:null,tg:null},
- {name:'Роман Сотников',ig:null,tg:{link:'https://t.me/bestkidsparks',subs:60,posts:10,views:468,note:'канал «Индустрия», ведём по плану компании'}}
+ {name:'Кирилл Шувалов',ig:null,tg:null}
 ],
 extra:'ВК сообщество за 30 дней к предыдущим 30: просмотры контента 4,6 тыс. (×7), охват 798 (×5,8), посещения 428 (×6), клипы 2,2 тыс. просмотров (×9). Подписчики: ВК 1 827 (−1), Instagram 903 (+8), YouTube 2,17 тыс. (~+10), TG Антона 173, TG Романа 60. Переходов на сайт с постов ВК 0. До нас Shorts набирали ~150 просмотров на ролик.',
 notes:[
@@ -135,31 +133,31 @@ planRows:[["Неделя 1 · 02–08.11 · Ниндзя-направление"
 mplans:{"Александр Казанцев": [["03.11", "Закреп: видео-визитка + «кто я»", "Reels видео-визитки"], ["05.11", "Мой проект: Щучинск, Казахстан", "карусель Щучинск"], ["10.11", "О-1 Как проходит проект", "—"], ["12.11", "С объекта: тестовая сборка башни паука для Якутска", "Reels сборки"], ["17.11", "Мой проект: Иркутск, интерактивный парк", "карусель Иркутск"], ["19.11", "Отвечаю: какое помещение подходит под ниндзя-парк", "—"], ["24.11", "О-2 Что прислать менеджеру", "сторис-опрос"], ["26.11", "Мой проект: Валуйки", "Reels Валуйки"]], "Екатерина Тюкавкина": [["04.11", "Закреп: кто я + видео-визитка (снять)", "первая публикация: портрет и «кто я»"], ["06.11", "Насмотренность: «ТикиТаки» глазами менеджера (её обзор)", "Reels обзора"], ["11.11", "О-1 Как проходит проект", "—"], ["13.11", "Насмотренность: Авиапарк, 7 100 м²: зоны, которые держат гостей часами", "карусель «5 идей из Авиапарка»"], ["18.11", "Отвечаю: как сделать парк интересным взрослым", "—"], ["20.11", "Насмотренность: тач-арена", "Reels"], ["25.11", "О-2 Что прислать менеджеру", "сторис-опрос"], ["27.11", "Мой проект: один из её объектов (данные от Екатерины)", "карусель"]], "Оксана Журман": [["05.11", "Закреп: кто я (портрет + текст), видео-визитка после съёмки", "первая публикация"], ["10.11", "О-1 Как проходит проект", "—"], ["12.11", "Мой проект: объект на выбор Оксаны", "карусель"], ["17.11", "Отвечаю: что важно в помещении ТЦ", "—"], ["19.11", "С производства: как проверяем оборудование до отправки", "Reels тестовой сборки"], ["24.11", "О-2 Что прислать менеджеру", "сторис-опрос"], ["26.11", "О-3 Сколько длится проект", "карусель сроков"], ["28.11", "Мой проект №2", "—"]], "Кирилл Шувалов": [["03.11", "Закреп: кто я, путь с 2019 года (интервью 1)", "Reels интервью 1"], ["06.11", "Три слова: окупаемость, безопасность, эффектно (интервью 6)", "Reels"], ["10.11", "Страны и проекты: СНГ, Нью-Йорк, Германия (интервью 2)", "карусель «где я открывал парки»"], ["13.11", "Казахстан: филиал и 11 проектов с «Аватарией» (интервью 3)", "Reels"], ["17.11", "Нью-Йорк: созвоны в час ночи (интервью 4)", "—"], ["20.11", "История с флексом на приёмке (интервью 5)", "Reels"], ["24.11", "О-3 Сколько длится проект", "—"], ["27.11", "Итоги месяца компании от первого лица", "карусель"]]},
 mpins:{"Александр Казанцев": "Привет! Я Александр Казанцев, менеджер проектов UNITRAMP.\n\nПомогаю собственникам торговых центров и инвесторам открыть детский или семейный парк: от замеров помещения до первого гостя.\n\nЧто здесь будет:\n▪️ проекты, которые я веду: города, площади, фото с монтажа\n▪️ ответы на частые вопросы: сроки, помещение, документы\n▪️ новости с производства и тестовых сборок\n\nХотите понять, что можно сделать в вашем помещении? Напишите мне в личные сообщения.", "Екатерина Тюкавкина": "Привет! Я Екатерина, менеджер проектов UNITRAMP.\n\nОбъездила десятки детских парков в России и за её пределами и рассказываю, что в них работает: зоны, которые держат гостей часами, детали, на которых парк зарабатывает.\n\nЧто здесь будет:\n▪️ обзоры парков: что взять в свой проект\n▪️ проекты, которые я веду\n▪️ ответы на вопросы собственников\n\nОбсудить ваш парк: напишите мне в личные сообщения.", "Оксана Журман": "Здравствуйте! Я Оксана, менеджер проектов UNITRAMP.\n\nВеду проекты детских и семейных парков от первого звонка до открытия: помещение, концепция, производство, монтаж.\n\nЧто здесь будет:\n▪️ проекты, которые я веду\n▪️ ответы на вопросы собственников\n▪️ как устроен путь парка от идеи до открытия\n\nНапишите мне, если хотите обсудить ваше помещение.", "Кирилл Шувалов": "Я Кирилл Шувалов, генеральный директор UNITRAMP.\n\nВ индустрии развлечений с 2019 года: прошёл путь от менеджера по продажам до директора, открывал парки в странах СНГ, работал с проектами в Нью-Йорке и Германии.\n\nС заказчиками работаю по трём правилам: окупаемость, безопасность, эффектно.\n\nЗдесь пишу о том, как создаются прибыльные семейные парки, и показываю проекты UNITRAMP."},
 extra:'',notes:[],
-managers:[{name:'Александр Казанцев',ig:null,tg:{link:'https://t.me/chestno_o_parkah',subs:null,posts:null,views:null}},{name:'Екатерина Тюкавкина',ig:null,tg:null},{name:'Оксана Журман',ig:null,tg:null},{name:'Кирилл Шувалов',ig:null,tg:null},{name:'Роман Сотников',ig:null,tg:{link:'https://t.me/bestkidsparks',subs:null,posts:null,views:null}}],
+managers:[{name:'Александр Казанцев',ig:null,tg:{link:'https://t.me/chestno_o_parkah',subs:null,posts:null,views:null}},{name:'Екатерина Тюкавкина',ig:null,tg:null},{name:'Оксана Журман',ig:null,tg:null},{name:'Кирилл Шувалов',ig:null,tg:null}],
 items:[]},
 {key:'2026-12',label:'Декабрь · месяц 3',period:'30.11–27.12.2026',plan:'plan-m3.html',template:true,extra:'',notes:[],
-managers:[{name:'Александр Казанцев',ig:null,tg:{link:'https://t.me/chestno_o_parkah',subs:null,posts:null,views:null}},{name:'Екатерина Тюкавкина',ig:null,tg:null},{name:'Оксана Журман',ig:null,tg:null},{name:'Кирилл Шувалов',ig:null,tg:null},{name:'Роман Сотников',ig:null,tg:{link:'https://t.me/bestkidsparks',subs:null,posts:null,views:null}}],
+managers:[{name:'Александр Казанцев',ig:null,tg:{link:'https://t.me/chestno_o_parkah',subs:null,posts:null,views:null}},{name:'Екатерина Тюкавкина',ig:null,tg:null},{name:'Оксана Журман',ig:null,tg:null},{name:'Кирилл Шувалов',ig:null,tg:null}],
 items:[]},
 {key:'2027-01',label:'Январь · месяц 4',period:'январь 2027',plan:'plan-m4.html',template:true,extra:'',notes:[],
-managers:[{name:'Александр Казанцев',ig:null,tg:{link:'https://t.me/chestno_o_parkah',subs:null,posts:null,views:null}},{name:'Екатерина Тюкавкина',ig:null,tg:null},{name:'Оксана Журман',ig:null,tg:null},{name:'Кирилл Шувалов',ig:null,tg:null},{name:'Роман Сотников',ig:null,tg:{link:'https://t.me/bestkidsparks',subs:null,posts:null,views:null}}],
+managers:[{name:'Александр Казанцев',ig:null,tg:{link:'https://t.me/chestno_o_parkah',subs:null,posts:null,views:null}},{name:'Екатерина Тюкавкина',ig:null,tg:null},{name:'Оксана Журман',ig:null,tg:null},{name:'Кирилл Шувалов',ig:null,tg:null}],
 items:[]},
 {key:'2027-02',label:'Февраль · месяц 5',period:'февраль 2027',plan:'plan-m5.html',template:true,extra:'',notes:[],
-managers:[{name:'Александр Казанцев',ig:null,tg:{link:'https://t.me/chestno_o_parkah',subs:null,posts:null,views:null}},{name:'Екатерина Тюкавкина',ig:null,tg:null},{name:'Оксана Журман',ig:null,tg:null},{name:'Кирилл Шувалов',ig:null,tg:null},{name:'Роман Сотников',ig:null,tg:{link:'https://t.me/bestkidsparks',subs:null,posts:null,views:null}}],
+managers:[{name:'Александр Казанцев',ig:null,tg:{link:'https://t.me/chestno_o_parkah',subs:null,posts:null,views:null}},{name:'Екатерина Тюкавкина',ig:null,tg:null},{name:'Оксана Журман',ig:null,tg:null},{name:'Кирилл Шувалов',ig:null,tg:null}],
 items:[]},
 {key:'2027-03',label:'Март · месяц 6',period:'март 2027',plan:'plan-m6.html',template:true,extra:'',notes:[],
-managers:[{name:'Александр Казанцев',ig:null,tg:{link:'https://t.me/chestno_o_parkah',subs:null,posts:null,views:null}},{name:'Екатерина Тюкавкина',ig:null,tg:null},{name:'Оксана Журман',ig:null,tg:null},{name:'Кирилл Шувалов',ig:null,tg:null},{name:'Роман Сотников',ig:null,tg:{link:'https://t.me/bestkidsparks',subs:null,posts:null,views:null}}],
+managers:[{name:'Александр Казанцев',ig:null,tg:{link:'https://t.me/chestno_o_parkah',subs:null,posts:null,views:null}},{name:'Екатерина Тюкавкина',ig:null,tg:null},{name:'Оксана Журман',ig:null,tg:null},{name:'Кирилл Шувалов',ig:null,tg:null}],
 items:[]}
 ];
 const PLATS=['Все','YouTube','ВК','Telegram','Instagram','Pinterest','Менеджеры'];
 const CONTENT=['YouTube','ВК','Telegram','Instagram','Pinterest'];
 const LAST=MONTHS.map(m=>!m.template).lastIndexOf(true);
-const st={m:LAST,p:'Все',s:'v',f:'Все',mg:'Все'};
+const st={m:LAST,p:'Все',s:'v',f:'Все',mg:'Все',net:'tg'};
 const fmt=n=>n==null?'—':Number(n).toLocaleString('ru-RU');
 const pct=(a,b)=>b?(Math.round(a/b*1000)/10).toString().replace('.',',')+'%':'—';
 const dkey=d=>d?d.split('.').reverse().join(''):'0000';
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-function readHash(){const h=decodeURIComponent(location.hash.slice(1)).split('/');const mi=MONTHS.findIndex(m=>m.key==h[0]);if(mi>=0)st.m=mi;if(PLATS.includes(h[1]))st.p=h[1];if(['v','i','d'].includes(h[2]))st.s=h[2];st.f=h[3]||'Все';st.mg=h[4]||'Все';}
-function writeHash(){const h=[MONTHS[st.m].key,st.p,st.s,st.f,st.mg].join('/');if(decodeURIComponent(location.hash.slice(1))!=h)history.replaceState(null,'','#'+encodeURIComponent(h));}
+function readHash(){const h=decodeURIComponent(location.hash.slice(1)).split('/');const mi=MONTHS.findIndex(m=>m.key==h[0]);if(mi>=0)st.m=mi;if(PLATS.includes(h[1]))st.p=h[1];if(['v','i','d'].includes(h[2]))st.s=h[2];st.f=h[3]||'Все';st.mg=h[4]||'Все';st.net=h[5]=='ig'?'ig':'tg';}
+function writeHash(){const h=[MONTHS[st.m].key,st.p,st.s,st.f,st.mg,st.net].join('/');if(decodeURIComponent(location.hash.slice(1))!=h)history.replaceState(null,'','#'+encodeURIComponent(h));}
 function rows(M){return (M.items||[]).map(r=>({pl:r[0],d:r[1],id:r[2],f:r[3],t:r[4],v:r[5],i:r[6]}));}
 function agg(rr){const b={n:0,v:0,i:0,best:null};rr.forEach(r=>{b.n+=r.pl=='Pinterest'?(parseInt(r.f)||1):1;b.v+=r.v||0;b.i+=r.i||0;if(!b.best||r.v>b.best.v)b.best=r;});return b;}
 function sortRows(rr){const k=st.s;return rr.sort((a,b)=>k=='d'?dkey(b.d).localeCompare(dkey(a.d)):((b[k]??-1)-(a[k]??-1)));}
@@ -168,7 +166,7 @@ const PLAN={};
 async function loadPlan(url){if(PLAN[url])return PLAN[url];const P={panes:{}};
  try{const h=await fetch(url).then(r=>{if(!r.ok)throw 0;return r.text()});const d=new DOMParser().parseFromString(h,'text/html');
   const css=d.querySelector('style');if(css&&!document.getElementById('plancss')){const el=document.createElement('style');el.id='plancss';el.textContent=css.textContent.replace(/(^|})\s*(\.top|body|main|:root|\.tab|\.wk)[^{]*\{[^}]*\}/g,'$1');document.head.insertBefore(el,document.getElementById('own'));}
-  d.querySelectorAll('section.pane').forEach(p=>{const m={};const who=p.dataset.who||(p.dataset.p=='1'?'Роман Сотников':null);if(who){P.who=P.who||{};P.who[who]=[...p.querySelectorAll('article')].map(a=>({d:(a.querySelector('.when')?.textContent.match(/(\d\d\.\d\d)/)||[])[1]||'',html:a.innerHTML}));}p.querySelectorAll('article').forEach(a=>{const id=a.querySelector('.id')?.textContent.trim();if(id&&!m[id]){a.querySelectorAll('pre[id]').forEach(x=>{x.dataset.cid=x.id;x.removeAttribute('id')});a.querySelectorAll('.box').forEach(x=>x.classList.add('clip'));a.querySelectorAll('button[onclick]').forEach(x=>x.setAttribute('onclick',x.getAttribute('onclick').replace(/cp\('([^']+)',this\)/,"cp('$1',this)")));m[id]=a.innerHTML;}});P.panes[p.dataset.p]=m;});
+  d.querySelectorAll('section.pane').forEach(p=>{const m={};const who=p.dataset.who?p.dataset.who+'|'+(p.dataset.net||'tg'):null;if(who){P.who=P.who||{};P.who[who]=[...p.querySelectorAll('article')].map(a=>({d:(a.querySelector('.when')?.textContent.match(/(\d\d\.\d\d)/)||[])[1]||'',html:a.innerHTML}));}p.querySelectorAll('article').forEach(a=>{const id=a.querySelector('.id')?.textContent.trim();if(id&&!m[id]){a.querySelectorAll('pre[id]').forEach(x=>{x.dataset.cid=x.id;x.removeAttribute('id')});a.querySelectorAll('.box').forEach(x=>x.classList.add('clip'));a.querySelectorAll('button[onclick]').forEach(x=>x.setAttribute('onclick',x.getAttribute('onclick').replace(/cp\('([^']+)',this\)/,"cp('$1',this)")));m[id]=a.innerHTML;}});P.panes[p.dataset.p]=m;});
  }catch(e){}
  return PLAN[url]=P;}
 function panesFor(r){if(r.pl=='Telegram')return r.f=='Канал Романа'?['1']:['0'];if(r.pl=='ВК')return r.f=='Пост'?['2']:['4','2'];if(r.pl=='YouTube')return['5'];if(r.pl=='Instagram')return['3'];return[];}
@@ -178,17 +176,17 @@ function cp(id,b){const el=document.querySelector(`[data-cid="${id}"]`);if(!el)r
 function fb(t,ok){const a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();try{document.execCommand('copy');ok()}catch(e){}a.remove()}
 function header(){const M=MONTHS[st.m];const R=rows(M);
  document.getElementById('months').innerHTML=MONTHS.map((m,i)=>`<button class="mb${i==st.m?' on':''}" data-m="${i}">${m.label}${m.template&&!m.ready?' <small>шаблон</small>':''}</button>`).join('');
- const PEOPLE=(M.managers||[]).map(m=>m.name);document.getElementById('people').innerHTML='<span style="opacity:.6;font-size:13px;align-self:center;margin-right:4px">Люди:</span>'+PEOPLE.map(n=>`<button class="pb${st.p=='Менеджеры'&&st.mg==n?' on':''}" data-person="${esc(n)}">${esc(n.split(' ')[0])}</button>`).join('');
  document.getElementById('plats').innerHTML=PLATS.map(p=>{let c='';if(CONTENT.includes(p)&&!M.template){const rr=R.filter(r=>r.pl==p);c=p=='Pinterest'?(parseInt(rr[0]?.f)||''):rr.length;}return `<button class="pb${p==st.p?' on':''}" data-p="${p}">${p}${c!==''?`<span>${c}</span>`:''}</button>`}).join('');
 }
 function sortTools(){return `<div class="seg" role="group">${[['v','По просмотрам'],['i','По взаимодействиям'],['d','По дате']].map(([k,t])=>`<button class="${st.s==k?'on':''}" data-s="${k}">${t}</button>`).join('')}</div>`;}
-function fmtTools(rr){const fs=[...new Set(rr.map(r=>r.f))];if(fs.length<2)return '';return `<div class="seg">${['Все',...fs].map(f=>`<button class="${st.f==f?'on':''}" data-f="${esc(f)}">${f=='Все'?'Все форматы':esc(f)}</button>`).join('')}</div>`;}
+const FLAB={'Канал Антона':'Юнитрамп · канал Антона','Канал Романа':'Индустрия · канал Романа'};
+function fmtTools(rr){const fs=[...new Set(rr.map(r=>r.f))];if(fs.length<2)return '';return `<div class="seg">${['Все',...fs].map(f=>`<button class="${st.f==f?'on':''}" data-f="${esc(f)}">${f=='Все'?(st.p=='Telegram'?'Оба канала':'Все форматы'):esc(FLAB[f]||f)}</button>`).join('')}</div>`;}
 function mgrCell(x){if(!x)return '<td colspan="4" class="muted">не оформлено</td>';return `<td>${x.link?`<a href="${x.link}" target="_blank">открыть</a>`:'—'}</td><td class="n">${fmt(x.subs)}</td><td class="n">${fmt(x.posts)}</td><td class="n">${fmt(x.views)}${x.note?`<div class="muted">${esc(x.note)}</div>`:''}</td>`;}
 function mgrBlock(M){const L=M.managers||[];const done=L.filter(m=>m.ig&&m.tg).length;
  return `<section class="s"><h2>Соцсети менеджеров <span class="muted">· оформлено полностью ${done} из ${L.length}</span></h2><div class="tw"><table>
  <tr><th rowspan="2">Менеджер</th><th colspan="4">Instagram</th><th colspan="4">Telegram</th></tr>
  <tr><th>Ссылка</th><th class="n">Подписчики</th><th class="n">Публикаций</th><th class="n">Просмотры</th><th>Ссылка</th><th class="n">Подписчики</th><th class="n">Публикаций</th><th class="n">Просмотры</th></tr>`+
- L.map(m=>`<tr><td>${esc(m.name)}</td>${mgrCell(m.ig)}${mgrCell(m.tg)}</tr>`).join('')+`</table></div><p class="muted">Смарт-задача: у каждого менеджера Instagram и Telegram, клиент видит, кто с ним общается. Базовое оформление и пара публикаций, не поток контента.</p></section>`;}
+ L.map(m=>`<tr><td>${esc(m.name)}</td>${mgrCell(m.ig)}${mgrCell(m.tg)}</tr>`).join('')+`</table></div><p class="muted">Смарт-задача: у каждого менеджера Instagram и Telegram, клиент видит, кто с ним общается. Базовое оформление и пара публикаций, не поток контента. Канал Романа (@bestkidsparks) — во вкладке Telegram.</p></section>`;}
 function kpis(b,extra){return `<div class="kpis"><div class="kpi"><b>${fmt(b.n)}</b><span>публикаций</span></div><div class="kpi"><b>${fmt(b.v)}</b><span>просмотров</span></div><div class="kpi"><b>${fmt(b.i)}</b><span>взаимодействий</span></div>${extra||''}</div>`;}
 function viewAll(M){const R=rows(M);
  const by={};CONTENT.forEach(p=>{const rr=R.filter(r=>r.pl==p);if(rr.length)by[p]=agg(rr);});
@@ -222,8 +220,9 @@ async function viewTemplate(M,app){const one=CONTENT.includes(st.p);
  if(one&&st.p!='Pinterest'){app.innerHTML=h+'<p class="muted">Загружаю контент-план…</p>';const P=await loadPlan(M.plan);let cards=[];
   (PANES[st.p]||[]).forEach(([pn,lab])=>{Object.entries(P.panes[pn]||{}).forEach(([id,html])=>cards.push({id,lab,html,d:(html.match(/📅\s*<b>(\d\d\.\d\d)/)||[])[1]||''}));});
   cards.sort((a,b)=>dkey(a.d).localeCompare(dkey(b.d)));
+  let tools='';if(st.p=='Telegram'){const opts=[['Все','Оба канала'],['Канал Антона','Юнитрамп · канал Антона'],['Канал Романа','Индустрия · канал Романа']];if(!opts.some(o=>o[0]==st.f))st.f='Все';tools=`<section class="s"><div class="seg">${opts.map(([k,t])=>`<button class="${st.f==k?'on':''}" data-f="${k}">${t}</button>`).join('')}</div></section>`;if(st.f!='Все')cards=cards.filter(c=>c.lab==st.f);}
   if(!cards.length){const pr=(M.planRows||[]).filter(r=>PMATCH[st.p]&&PMATCH[st.p].test(r[3]));if(pr.length)return h+`<section class="s"><h2>План ${st.p} на месяц <span class="muted">· ${pr.length} публикаций · полные тексты и баннеры появятся здесь после согласования</span></h2>${planRowsHtml(pr,false)}</section>`;return h+`<section class="s"><div class="empty">Контент-план ${st.p} на этот месяц ещё не готов.</div></section>`;}
-  return h+cards.map((c,k)=>`<div class="post"><div class="pstat"><b>#${k+1}</b><span>${c.d||'—'}</span>${c.lab?`<span class="tag">${c.lab}</span>`:''}<span class="muted" style="color:#9EBEFF">цифры после публикации</span></div><article>${c.html}</article></div>`).join('');}
+  return h+tools+cards.map((c,k)=>`<div class="post"><div class="pstat"><b>#${k+1}</b><span>${c.d||'—'}</span>${c.lab?`<span class="tag">${esc(FLAB[c.lab]||c.lab)}</span>`:''}<span class="muted" style="color:#9EBEFF">цифры после публикации</span></div><article>${c.html}</article></div>`).join('');}
  if(one)return h;
  return h+(M.planRows?`<section class="s"><h2>Контент-план месяца <span class="muted">· ${M.planRows.length} публикаций · красным материалы, которых пока нет</span></h2>${planRowsHtml(M.planRows,true)}</section>`:'')+`<section class="s"><h2>По площадкам</h2><div class="tw"><table><tr><th>Площадка</th><th class="n">Публикаций</th><th class="n">Просмотры</th><th class="n">Взаимодействия</th><th class="n">Среднее</th><th>Больше всего</th></tr>${CONTENT.map(p=>`<tr><td><b>${p}</b></td><td class="n">—</td><td class="n">—</td><td class="n">—</td><td class="n">—</td><td>—</td></tr>`).join('')}<tr class="tot"><td>Итого</td><td class="n">—</td><td class="n">—</td><td class="n">—</td><td></td><td></td></tr></table></div></section>`+mgrBlock(M);}
 async function viewMgr(M,app){const L=M.managers||[];if(st.mg!='Все'&&!L.some(m=>m.name==st.mg))st.mg='Все';
@@ -231,8 +230,8 @@ async function viewMgr(M,app){const L=M.managers||[];if(st.mg!='Все'&&!L.some
  if(st.mg=='Все')return h+mgrBlock(M);
  const m=L.find(x=>x.name==st.mg),I=MGR_INFO[st.mg]||{},plan=(M.mplans||{})[st.mg],pin=(M.mpins||{})[st.mg];
  const ch=(x,lab,st2)=>`<div class="kpi"><b style="font-size:16px">${lab}</b><span>${x&&x.link?`<a href="${x.link}" target="_blank">${x.link.replace('https://','')}</a> · ${fmt(x.subs)} подписчиков · ${fmt(x.posts)} публикаций`:esc(st2||'не оформлено')}</span></div>`;
- h+=`<section class="s"><h2>${esc(st.mg)} <span class="muted">· ${esc(I.role||'')} · ${M.label}</span></h2><div class="kpis">${ch(m.tg,'Telegram',I.tg)}${ch(m.ig,'Instagram',I.ig)}<div class="kpi"><b style="font-size:16px">Видео-визитка</b><span>${esc(I.card||'—')}</span></div></div>${I.need?`<p class="muted" style="margin-top:10px">Нужно от менеджера: ${esc(I.need)}</p>`:''}</section>`;
- const P2=M.plan?await loadPlan(M.plan):null;const full=P2&&P2.who&&P2.who[st.mg];
+ h+=`<section class="s"><h2>${esc(st.mg)} <span class="muted">· ${esc(I.role||'')} · ${M.label}</span></h2><div class="tools"><div class="seg">${[['tg','Telegram'],['ig','Instagram']].map(([k,t])=>`<button class="${st.net==k?'on':''}" data-net="${k}">${t}</button>`).join('')}</div></div><div class="kpis">${ch(m.tg,'Telegram',I.tg)}${ch(m.ig,'Instagram',I.ig)}<div class="kpi"><b style="font-size:16px">Видео-визитка</b><span>${esc(I.card||'—')}</span></div></div>${I.need?`<p class="muted" style="margin-top:10px">Нужно от менеджера: ${esc(I.need)}</p>`:''}</section>`;
+ const P2=M.plan?await loadPlan(M.plan):null;const full=P2&&P2.who&&P2.who[st.mg+'|'+st.net];
  if(full&&full.length){h+=`<section class="s"><h2>Посты на месяц <span class="muted">· ${full.length} · полный текст, медиа и кнопки «Скопировать»</span></h2></section>`+full.map((c,k)=>`<div class="post"><div class="pstat"><b>#${k+1}</b><span>${c.d||'—'}</span><span class="muted" style="color:#9EBEFF">${M.template&&!M.ready?'':'цифры после публикации'}</span></div><article>${c.html}</article></div>`).join('');return h;}
  if(plan)h+=`<section class="s"><h2>План на месяц <span class="muted">· ${plan.length} публикаций</span></h2><div class="tw"><table><tr><th>Дата</th><th>Telegram</th><th>Instagram</th></tr>${plan.map(r=>`<tr><td class="d">${esc(r[0])}</td><td>${esc(r[1])}</td><td>${esc(r[2])}</td></tr>`).join('')}</table></div></section>`;
  else h+=`<section class="s"><div class="empty">${M.template?'План менеджера на этот месяц ещё не составлен.':'В этом месяце канал менеджера не вёлся. План начинается с ноября.'}</div></section>`;
@@ -248,9 +247,9 @@ async function render(){const my=++seq;writeHash();header();const M=MONTHS[st.m]
  if(st.p=='Менеджеры')h=await viewMgr(M,app);else if(M.template)h=await viewTemplate(M,app);else if(st.p=='Все')h=viewAll(M);else h=await viewPlat(M,app);
  if(my!=seq)return;app.innerHTML=h;
  app.querySelectorAll('.post .box.clip').forEach(bx=>{const pre=bx.querySelector('pre');if(!pre||pre.scrollHeight<=pre.clientHeight+4){bx.classList.remove('clip');return;}const btn=document.createElement('button');btn.className='more';btn.textContent='Показать текст полностью';btn.onclick=()=>{bx.classList.toggle('clip');btn.textContent=bx.classList.contains('clip')?'Показать текст полностью':'Свернуть текст';};bx.after(btn);});}
-document.addEventListener('click',e=>{const t=e.target.closest('[data-m],[data-p],[data-s],[data-f],[data-mg],[data-person]');if(!t)return;e.preventDefault();
- const sc=t.dataset.m!=null||t.dataset.p!=null||t.dataset.person!=null;
- if(t.dataset.m!=null)st.m=+t.dataset.m;if(t.dataset.p!=null){st.p=t.dataset.p;st.f='Все';}if(t.dataset.s)st.s=t.dataset.s;if(t.dataset.f)st.f=t.dataset.f;if(t.dataset.mg)st.mg=t.dataset.mg;if(t.dataset.person){st.p='Менеджеры';st.mg=t.dataset.person;}
+document.addEventListener('click',e=>{const t=e.target.closest('[data-m],[data-p],[data-s],[data-f],[data-mg],[data-net]');if(!t)return;e.preventDefault();
+ const sc=t.dataset.m!=null||t.dataset.p!=null;
+ if(t.dataset.m!=null)st.m=+t.dataset.m;if(t.dataset.p!=null){st.p=t.dataset.p;st.f='Все';}if(t.dataset.s)st.s=t.dataset.s;if(t.dataset.f)st.f=t.dataset.f;if(t.dataset.mg)st.mg=t.dataset.mg;if(t.dataset.net)st.net=t.dataset.net;
  render();if(sc)scrollTo(0,0);});
 readHash();render();
 </script></body></html>
