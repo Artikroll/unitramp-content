@@ -29,7 +29,7 @@ tr.tot td{font-weight:700;border-top:2px solid var(--navy)}tr.go{cursor:pointer}
 ul{margin:0;padding-left:20px}li{margin-bottom:6px}
 </style></head><body>
 <div class="top"><div class="hd"><h1>Контент UNITRAMP · план и статистика</h1></div>
-<div class="bar" id="months"></div><div class="bar" id="plats"></div></div>
+<div class="bar" id="months"></div><div class="bar" id="plats"></div><div class="bar" id="people"></div></div>
 <main id="app"></main>
 <script>
 /* Данные по месяцам. Новый месяц: добавить объект в MONTHS (key, label, period, plan — архивная копия плана месяца, items, managers, notes, extra).
@@ -168,7 +168,7 @@ const PLAN={};
 async function loadPlan(url){if(PLAN[url])return PLAN[url];const P={panes:{}};
  try{const h=await fetch(url).then(r=>{if(!r.ok)throw 0;return r.text()});const d=new DOMParser().parseFromString(h,'text/html');
   const css=d.querySelector('style');if(css&&!document.getElementById('plancss')){const el=document.createElement('style');el.id='plancss';el.textContent=css.textContent.replace(/(^|})\s*(\.top|body|main|:root|\.tab|\.wk)[^{]*\{[^}]*\}/g,'$1');document.head.insertBefore(el,document.getElementById('own'));}
-  d.querySelectorAll('section.pane').forEach(p=>{const m={};p.querySelectorAll('article').forEach(a=>{const id=a.querySelector('.id')?.textContent.trim();if(id&&!m[id]){a.querySelectorAll('pre[id]').forEach(x=>{x.dataset.cid=x.id;x.removeAttribute('id')});a.querySelectorAll('.box').forEach(x=>x.classList.add('clip'));a.querySelectorAll('button[onclick]').forEach(x=>x.setAttribute('onclick',x.getAttribute('onclick').replace(/cp\('([^']+)',this\)/,"cp('$1',this)")));m[id]=a.innerHTML;}});P.panes[p.dataset.p]=m;});
+  d.querySelectorAll('section.pane').forEach(p=>{const m={};const who=p.dataset.who||(p.dataset.p=='1'?'Роман Сотников':null);if(who){P.who=P.who||{};P.who[who]=[...p.querySelectorAll('article')].map(a=>({d:(a.querySelector('.when')?.textContent.match(/(\d\d\.\d\d)/)||[])[1]||'',html:a.innerHTML}));}p.querySelectorAll('article').forEach(a=>{const id=a.querySelector('.id')?.textContent.trim();if(id&&!m[id]){a.querySelectorAll('pre[id]').forEach(x=>{x.dataset.cid=x.id;x.removeAttribute('id')});a.querySelectorAll('.box').forEach(x=>x.classList.add('clip'));a.querySelectorAll('button[onclick]').forEach(x=>x.setAttribute('onclick',x.getAttribute('onclick').replace(/cp\('([^']+)',this\)/,"cp('$1',this)")));m[id]=a.innerHTML;}});P.panes[p.dataset.p]=m;});
  }catch(e){}
  return PLAN[url]=P;}
 function panesFor(r){if(r.pl=='Telegram')return r.f=='Канал Романа'?['1']:['0'];if(r.pl=='ВК')return r.f=='Пост'?['2']:['4','2'];if(r.pl=='YouTube')return['5'];if(r.pl=='Instagram')return['3'];return[];}
@@ -178,6 +178,7 @@ function cp(id,b){const el=document.querySelector(`[data-cid="${id}"]`);if(!el)r
 function fb(t,ok){const a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();try{document.execCommand('copy');ok()}catch(e){}a.remove()}
 function header(){const M=MONTHS[st.m];const R=rows(M);
  document.getElementById('months').innerHTML=MONTHS.map((m,i)=>`<button class="mb${i==st.m?' on':''}" data-m="${i}">${m.label}${m.template&&!m.ready?' <small>шаблон</small>':''}</button>`).join('');
+ const PEOPLE=(M.managers||[]).map(m=>m.name);document.getElementById('people').innerHTML='<span style="opacity:.6;font-size:13px;align-self:center;margin-right:4px">Люди:</span>'+PEOPLE.map(n=>`<button class="pb${st.p=='Менеджеры'&&st.mg==n?' on':''}" data-person="${esc(n)}">${esc(n.split(' ')[0])}</button>`).join('');
  document.getElementById('plats').innerHTML=PLATS.map(p=>{let c='';if(CONTENT.includes(p)&&!M.template){const rr=R.filter(r=>r.pl==p);c=p=='Pinterest'?(parseInt(rr[0]?.f)||''):rr.length;}return `<button class="pb${p==st.p?' on':''}" data-p="${p}">${p}${c!==''?`<span>${c}</span>`:''}</button>`}).join('');
 }
 function sortTools(){return `<div class="seg" role="group">${[['v','По просмотрам'],['i','По взаимодействиям'],['d','По дате']].map(([k,t])=>`<button class="${st.s==k?'on':''}" data-s="${k}">${t}</button>`).join('')}</div>`;}
@@ -225,12 +226,14 @@ async function viewTemplate(M,app){const one=CONTENT.includes(st.p);
   return h+cards.map((c,k)=>`<div class="post"><div class="pstat"><b>#${k+1}</b><span>${c.d||'—'}</span>${c.lab?`<span class="tag">${c.lab}</span>`:''}<span class="muted" style="color:#9EBEFF">цифры после публикации</span></div><article>${c.html}</article></div>`).join('');}
  if(one)return h;
  return h+(M.planRows?`<section class="s"><h2>Контент-план месяца <span class="muted">· ${M.planRows.length} публикаций · красным материалы, которых пока нет</span></h2>${planRowsHtml(M.planRows,true)}</section>`:'')+`<section class="s"><h2>По площадкам</h2><div class="tw"><table><tr><th>Площадка</th><th class="n">Публикаций</th><th class="n">Просмотры</th><th class="n">Взаимодействия</th><th class="n">Среднее</th><th>Больше всего</th></tr>${CONTENT.map(p=>`<tr><td><b>${p}</b></td><td class="n">—</td><td class="n">—</td><td class="n">—</td><td class="n">—</td><td>—</td></tr>`).join('')}<tr class="tot"><td>Итого</td><td class="n">—</td><td class="n">—</td><td class="n">—</td><td></td><td></td></tr></table></div></section>`+mgrBlock(M);}
-function viewMgr(M){const L=M.managers||[];if(st.mg!='Все'&&!L.some(m=>m.name==st.mg))st.mg='Все';
+async function viewMgr(M,app){const L=M.managers||[];if(st.mg!='Все'&&!L.some(m=>m.name==st.mg))st.mg='Все';
  let h=`<section class="s"><div class="seg" style="flex-wrap:wrap">${['Все',...L.map(m=>m.name)].map(n=>`<button class="${st.mg==n?'on':''}" data-mg="${esc(n)}">${n=='Все'?'Все менеджеры':esc(n)}</button>`).join('')}</div></section>`;
  if(st.mg=='Все')return h+mgrBlock(M);
  const m=L.find(x=>x.name==st.mg),I=MGR_INFO[st.mg]||{},plan=(M.mplans||{})[st.mg],pin=(M.mpins||{})[st.mg];
  const ch=(x,lab,st2)=>`<div class="kpi"><b style="font-size:16px">${lab}</b><span>${x&&x.link?`<a href="${x.link}" target="_blank">${x.link.replace('https://','')}</a> · ${fmt(x.subs)} подписчиков · ${fmt(x.posts)} публикаций`:esc(st2||'не оформлено')}</span></div>`;
  h+=`<section class="s"><h2>${esc(st.mg)} <span class="muted">· ${esc(I.role||'')} · ${M.label}</span></h2><div class="kpis">${ch(m.tg,'Telegram',I.tg)}${ch(m.ig,'Instagram',I.ig)}<div class="kpi"><b style="font-size:16px">Видео-визитка</b><span>${esc(I.card||'—')}</span></div></div>${I.need?`<p class="muted" style="margin-top:10px">Нужно от менеджера: ${esc(I.need)}</p>`:''}</section>`;
+ const P2=M.plan?await loadPlan(M.plan):null;const full=P2&&P2.who&&P2.who[st.mg];
+ if(full&&full.length){h+=`<section class="s"><h2>Посты на месяц <span class="muted">· ${full.length} · полный текст, медиа и кнопки «Скопировать»</span></h2></section>`+full.map((c,k)=>`<div class="post"><div class="pstat"><b>#${k+1}</b><span>${c.d||'—'}</span><span class="muted" style="color:#9EBEFF">${M.template&&!M.ready?'':'цифры после публикации'}</span></div><article>${c.html}</article></div>`).join('');return h;}
  if(plan)h+=`<section class="s"><h2>План на месяц <span class="muted">· ${plan.length} публикаций</span></h2><div class="tw"><table><tr><th>Дата</th><th>Telegram</th><th>Instagram</th></tr>${plan.map(r=>`<tr><td class="d">${esc(r[0])}</td><td>${esc(r[1])}</td><td>${esc(r[2])}</td></tr>`).join('')}</table></div></section>`;
  else h+=`<section class="s"><div class="empty">${M.template?'План менеджера на этот месяц ещё не составлен.':'В этом месяце канал менеджера не вёлся. План начинается с ноября.'}</div></section>`;
  if(pin)h+=`<section class="s"><h2>Закреп канала</h2><div class="box"><pre data-cid="pin" style="margin:0;padding:12px 110px 12px 12px;white-space:pre-wrap;font:14px/1.5 inherit">${esc(pin)}</pre><button onclick="cp('pin',this)" style="position:absolute;top:8px;right:8px;border:0;background:var(--acc);color:#fff;border-radius:6px;padding:6px 10px;font:inherit;font-size:13px;cursor:pointer">Скопировать</button></div></section>`;
@@ -242,12 +245,12 @@ function planRowsHtml(rows,showWeek){let wk='',h='';rows.forEach(r=>{if(showWeek
 
 let seq=0;
 async function render(){const my=++seq;writeHash();header();const M=MONTHS[st.m];const app=document.getElementById('app');let h;
- if(st.p=='Менеджеры')h=viewMgr(M);else if(M.template)h=await viewTemplate(M,app);else if(st.p=='Все')h=viewAll(M);else h=await viewPlat(M,app);
+ if(st.p=='Менеджеры')h=await viewMgr(M,app);else if(M.template)h=await viewTemplate(M,app);else if(st.p=='Все')h=viewAll(M);else h=await viewPlat(M,app);
  if(my!=seq)return;app.innerHTML=h;
  app.querySelectorAll('.post .box.clip').forEach(bx=>{const pre=bx.querySelector('pre');if(!pre||pre.scrollHeight<=pre.clientHeight+4){bx.classList.remove('clip');return;}const btn=document.createElement('button');btn.className='more';btn.textContent='Показать текст полностью';btn.onclick=()=>{bx.classList.toggle('clip');btn.textContent=bx.classList.contains('clip')?'Показать текст полностью':'Свернуть текст';};bx.after(btn);});}
-document.addEventListener('click',e=>{const t=e.target.closest('[data-m],[data-p],[data-s],[data-f],[data-mg]');if(!t)return;e.preventDefault();
- const sc=t.dataset.m!=null||t.dataset.p!=null;
- if(t.dataset.m!=null)st.m=+t.dataset.m;if(t.dataset.p!=null){st.p=t.dataset.p;st.f='Все';}if(t.dataset.s)st.s=t.dataset.s;if(t.dataset.f)st.f=t.dataset.f;if(t.dataset.mg)st.mg=t.dataset.mg;
+document.addEventListener('click',e=>{const t=e.target.closest('[data-m],[data-p],[data-s],[data-f],[data-mg],[data-person]');if(!t)return;e.preventDefault();
+ const sc=t.dataset.m!=null||t.dataset.p!=null||t.dataset.person!=null;
+ if(t.dataset.m!=null)st.m=+t.dataset.m;if(t.dataset.p!=null){st.p=t.dataset.p;st.f='Все';}if(t.dataset.s)st.s=t.dataset.s;if(t.dataset.f)st.f=t.dataset.f;if(t.dataset.mg)st.mg=t.dataset.mg;if(t.dataset.person){st.p='Менеджеры';st.mg=t.dataset.person;}
  render();if(sc)scrollTo(0,0);});
 readHash();render();
 </script></body></html>
