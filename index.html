@@ -18,7 +18,7 @@ h2{font-size:16px;margin:0 0 10px}.muted{color:var(--muted);font-size:13px}
 tr.tot td{font-weight:700;border-top:2px solid var(--navy)}tr.go{cursor:pointer}tr.go:hover td{background:#F7F9FC}
 .tag{display:inline-block;font-size:11px;border-radius:4px;padding:1px 6px;background:#EEF2FA;color:#344054;white-space:nowrap}
 .li{display:grid;grid-template-columns:28px 46px 92px 1fr auto;gap:8px;align-items:baseline;padding:6px 0;border-bottom:1px solid var(--line);font-size:14px}.li .r{color:var(--muted);font-size:12px}.li .d{color:var(--muted);font-size:13px}.li .v{white-space:nowrap;text-align:right}.li .v small{color:var(--muted)}
-.li.top{background:var(--good)}.li.low{background:var(--low)}
+.li.hi{background:var(--good)}.li.low{background:var(--low)}
 @media(max-width:640px){.li{grid-template-columns:24px 42px 1fr;}.li .pl{display:none}.li .v{grid-column:2/4;text-align:left}}
 .post{margin-bottom:16px}.pstat{background:var(--navy);color:#fff;border-radius:10px 10px 0 0;padding:8px 14px;font-size:14px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
 .pstat .meter{flex:1;min-width:80px;height:6px;background:#2A3650;border-radius:3px;overflow:hidden}.pstat .meter i{display:block;height:100%;background:#7FB0FF}
@@ -195,7 +195,7 @@ function viewAll(M){const R=rows(M);
  `<tr class="tot"><td>Итого</td><td class="n">${T.n}${pins?' + '+pins+' пинов':''}</td><td class="n">${fmt(T.v)}</td><td class="n">${fmt(T.i)}</td><td></td><td></td></tr></table></div>${M.extra?`<p class="muted">${esc(M.extra)}</p>`:''}</section>`;
  const list=sortRows(R.filter(r=>r.pl!='Pinterest'));const byV=list.slice().sort((a,b)=>b.v-a.v);const top=new Set(byV.slice(0,5)),low=new Set(byV.slice(-5));
  h+=`<section class="s"><h2>Все публикации <span class="muted">· ${list.length} · зелёным 5 с наибольшими просмотрами, красным 5 с наименьшими</span></h2><div class="tools">${sortTools()}</div>`+
- list.map((r,k)=>`<div class="li${top.has(r)?' top':low.has(r)?' low':''}"><span class="r">${k+1}</span><span class="d">${r.d||'—'}</span><span class="pl"><span class="tag">${r.pl}</span></span><span>${esc(r.t)} <span class="muted">· ${esc(r.f)}</span></span><span class="v">${fmt(r.v)} <small>просм.</small> · ${fmt(r.i)} <small>взаим.</small></span></div>`).join('')+`</section>`;
+ list.map((r,k)=>`<div class="li${top.has(r)?' hi':low.has(r)?' low':''}"><span class="r">${k+1}</span><span class="d">${r.d||'—'}</span><span class="pl"><span class="tag">${r.pl}</span></span><span>${esc(r.t)} <span class="muted">· ${esc(r.f)}</span></span><span class="v">${fmt(r.v)} <small>просм.</small> · ${fmt(r.i)} <small>взаим.</small></span></div>`).join('')+`</section>`;
  h+=mgrBlock(M);
  if(M.notes?.length)h+=`<section class="s"><h2>Выводы месяца для следующего плана</h2><ul>${M.notes.map(n=>`<li>${esc(n)}</li>`).join('')}</ul></section>`;
  return h;}
