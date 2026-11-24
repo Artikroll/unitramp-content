@@ -24,7 +24,7 @@ async function initDB(){
 }
 function persist(rec,audios=[]){
  const copy=structuredClone(rec);for(const a of audios)audioCache.set(a.id,a.blob);pending++;updateSave();
- queue=queue.then(async()=>{if(!db){memoryDirty=true;return;}await transaction(['records','audio'],tx=>{tx.objectStore('records').put(copy);for(const a of audios)tx.objectStore('audio').put(a);});}).catch(e=>{storageFailed=true;db=null;memoryDirty=true;error('Не удалось сохранить последние изменения. Скачай файл правок перед закрытием страницы.');}).finally(()=>{pending--;updateSave();});
+ queue=queue.then(async()=>{if(!db||storageFailed){memoryDirty=true;return;}await transaction(['records','audio'],tx=>{tx.objectStore('records').put(copy);for(const a of audios)tx.objectStore('audio').put(a);});}).catch(e=>{storageFailed=true;memoryDirty=true;error('Не удалось сохранить последние изменения. Скачай файл правок перед закрытием страницы.');}).finally(()=>{pending--;updateSave();});
  return queue;
 }
 function change(fn,audios=[]){
