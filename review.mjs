@@ -1,4 +1,4 @@
-import{SCHEMA,LABELS,effective,touched,safeHTML,mediaURL,zipStore,unzipStored,validateImport}from'./review-core.mjs?v=15';
+import{SCHEMA,LABELS,effective,touched,safeHTML,mediaURL,zipStore,unzipStored,validateImport}from'./review-core.mjs?v=16';
 const $=id=>document.getElementById(id), esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const channelNames={'TG компании':'Юнитрамп · Telegram','TG Романа':'Роман Сотников · Telegram','TG Кирилла':'Кирилл Шувалов · Telegram','TG Екатерины':'Екатерина Тюкавкина · Telegram','TG Оксаны':'Оксана Журман · Telegram','VK':'ВК · посты','VK Клипы':'ВК · клипы','Instagram':'Instagram компании',YouTube:'YouTube · полный выпуск','YouTube Shorts':'YouTube Shorts','IG Reels':'Instagram · Reels'};
 const tags=['Текст','Фото / баннер','Видео','Другое'],labels=LABELS;
@@ -28,7 +28,7 @@ function persist(rec,audios=[]){
  return queue;
 }
 function change(fn,audios=[]){
- const t=targets.get(currentKey);if(!t)return;const r=recordFor(t);fn(r);r.updatedAt=new Date().toISOString();r.contentVersion=t.version;r.context=context(t);records.set(t.key,r);persist(r,audios);updateSummary();renderList();updateDecision();
+ const t=targets.get(currentKey);if(!t)return;const r=recordFor(t);for(const a of r.attachments)if(!a.contentVersion)a.contentVersion=r.contentVersion||r.decisionVersion||'';fn(r);r.updatedAt=new Date().toISOString();r.contentVersion=t.version;r.context=context(t);records.set(t.key,r);persist(r,audios);updateSummary();renderList();updateDecision();
 }
 async function getAudio(id){
  if(audioCache.has(id))return audioCache.get(id);if(!db)return null;
@@ -73,12 +73,12 @@ function renderMedia(){
  if(a.length>1){const controls=document.createElement('div');controls.className='slide-controls';controls.innerHTML='<button type="button" data-slide="'+(slide-1)+'" aria-label="Предыдущий слайд" '+(slide===0?'disabled':'')+'>←</button><span>Слайд '+(slide+1)+' из '+a.length+'</span><button type="button" data-slide="'+(slide+1)+'" aria-label="Следующий слайд" '+(slide===a.length-1?'disabled':'')+'>→</button>';$('media').append(controls);const thumbs=document.createElement('div');thumbs.className='thumbs';for(let i=0;i<a.length;i++){const b=document.createElement('button');b.type='button';b.dataset.slide=String(i);b.className=i===slide?'active':'';b.setAttribute('aria-label','Показать слайд '+(i+1));const im=document.createElement('img');im.src=mediaURL(a[i].poster||a[i].file);im.alt='';im.loading='lazy';b.append(im);thumbs.append(b);}$('media').append(thumbs);}
 }
 async function renderAudios(){
- const owner=currentKey,t=targets.get(owner),r=recordFor(t),host=$('audios');host.replaceChildren();
+ const owner=currentKey,t=targets.get(owner),r=recordFor(t),host=$('audios');host.replaceChildren();const oldRows=r.attachments.filter(a=>!a.removed&&(a.contentVersion||r.contentVersion||r.decisionVersion)&&(a.contentVersion||r.contentVersion||r.decisionVersion)!==t.version);let archive=null;if(oldRows.length){archive=document.createElement('details');archive.className='feedback-history';const summary=document.createElement('summary');summary.textContent='Голосовые к предыдущим версиям · '+oldRows.length;archive.append(summary);host.append(archive);}
  for(const[aidx,a]of r.attachments.entries()){
   if(owner!==currentKey)return;
   const row=document.createElement('div');
   if(a.removed){row.className='removed-audio';row.innerHTML='Запись убрана <button type="button" class="quiet" data-restore-audio="'+esc(a.id)+'">Вернуть</button>';host.append(row);continue;}
-  row.className='audio-row';row.innerHTML='<div class="audio-info"><span>Голосовое '+(aidx+1)+(a.duration?' · '+time(a.duration):'')+'</span><button type="button" data-remove-audio="'+esc(a.id)+'" aria-label="Убрать голосовое '+(aidx+1)+'">Убрать</button></div>';host.append(row);
+  row.className='audio-row';row.innerHTML='<div class="audio-info"><span>Голосовое '+(aidx+1)+(a.duration?' · '+time(a.duration):'')+'</span><button type="button" data-remove-audio="'+esc(a.id)+'" aria-label="Убрать голосовое '+(aidx+1)+'">Убрать</button></div>';const historical=(a.contentVersion||r.contentVersion||r.decisionVersion)&&(a.contentVersion||r.contentVersion||r.decisionVersion)!==t.version;(historical&&archive?archive:host).append(row);
   try{const b=await getAudio(a.id);if(owner!==currentKey)return;if(!b){const warn=document.createElement('p');warn.className='muted';warn.textContent='Аудиофайл недоступен. Можно восстановить его из выгрузки.';row.append(warn);continue;}const u=URL.createObjectURL(b);urls.push(u);const audio=document.createElement('audio');audio.controls=true;audio.preload='metadata';audio.src=u;row.append(audio);}
   catch(e){row.append('Не удалось открыть запись');}
  }
@@ -103,7 +103,7 @@ function ext(mime){return mime.includes('mp4')?'m4a':mime.includes('ogg')?'ogg':
 async function addAudio(blob,meta={}){
  if(!blob.size)throw Error('Запись пуста — попробуй ещё раз.');
  if(blob.size>50*1024*1024)throw Error('Запись больше 50 МБ. Выбери более короткий файл.');
- const id=crypto.randomUUID(),mime=blob.type||meta.mime||'audio/webm',a={id,mime,createdAt:new Date().toISOString(),duration:meta.duration||null,file:'audio/'+id+'.'+ext(mime)};
+ const id=crypto.randomUUID(),mime=blob.type||meta.mime||'audio/webm',a={id,mime,createdAt:new Date().toISOString(),duration:meta.duration||null,file:'audio/'+id+'.'+ext(mime),contentVersion:targets.get(currentKey).version};
  change(r=>r.attachments.push(a),[{id,targetKey:currentKey,blob}]);await queue;await renderAudios();
 }
 async function startRecording(){
@@ -163,7 +163,7 @@ async function importFeedback(file){
  try{
   const files=unzipStored(new Uint8Array(await file.arrayBuffer()));if(!files.has('feedback.json'))throw Error('В архиве нет feedback.json');
   const pkg=validateImport(JSON.parse(new TextDecoder().decode(files.get('feedback.json'))),files);let imported=0;
-  for(const r of pkg.records){const old=records.get(r.key);if(old&&Date.parse(old.updatedAt)>=Date.parse(r.updatedAt))continue;const clean={key:r.key,id:r.key.split('::')[0],variant:r.key.split('::')[1],notes:r.notes,tags:r.tags,decision:r.decision||'',decisionVersion:r.decisionVersion||'',contentVersion:r.contentVersion||'',updatedAt:r.updatedAt,context:r.context||null,history:Array.isArray(r.history)?r.history:[],attachments:r.attachments.map(a=>({id:a.id,file:a.file,mime:a.mime,duration:a.duration||null,createdAt:a.createdAt||r.updatedAt}))};if(old)clean.history.push({decision:old.decision,decisionVersion:old.decisionVersion,notes:old.notes,updatedAt:old.updatedAt});
+  for(const r of pkg.records){const old=records.get(r.key);if(old&&Date.parse(old.updatedAt)>=Date.parse(r.updatedAt))continue;const clean={key:r.key,id:r.key.split('::')[0],variant:r.key.split('::')[1],notes:r.notes,tags:r.tags,decision:r.decision||'',decisionVersion:r.decisionVersion||'',contentVersion:r.contentVersion||'',updatedAt:r.updatedAt,context:r.context||null,history:Array.isArray(r.history)?r.history:[],attachments:r.attachments.map(a=>({id:a.id,file:a.file,mime:a.mime,duration:a.duration||null,createdAt:a.createdAt||r.updatedAt,contentVersion:a.contentVersion||r.contentVersion||r.decisionVersion||''}))};if(old)clean.history.push({decision:old.decision,decisionVersion:old.decisionVersion,notes:old.notes,updatedAt:old.updatedAt});
    const audios=clean.attachments.map(a=>({id:a.id,targetKey:clean.key,blob:new Blob([files.get(a.file)],{type:a.mime})}));records.set(clean.key,clean);await persist(clean,audios);imported++;
   }
   updateSummary();renderList();renderCurrent();toast('Загружены замечания к '+imported+' версиям. Более новые правки в этом браузере сохранены.');
