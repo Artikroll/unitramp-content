@@ -1,6 +1,6 @@
-import{SCHEMA,LABELS,effective,touched,safeHTML,mediaURL,zipStore,unzipStored,validateImport}from'./review-core.mjs';
+import{SCHEMA,LABELS,effective,touched,safeHTML,mediaURL,zipStore,unzipStored,validateImport}from'./review-core.mjs?v=15';
 const $=id=>document.getElementById(id), esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const channelNames={'TG компании':'Юнитрамп · Telegram','TG Романа':'Роман Сотников · Telegram','TG Кирилла':'Кирилл Шувалов · Telegram','TG Екатерины':'Екатерина Тюкавкина · Telegram','TG Оксаны':'Оксана Журман · Telegram','VK':'ВК · посты','VK Клипы':'ВК · клипы','Instagram':'Instagram компании','YouTube Shorts':'YouTube Shorts','IG Reels':'Instagram · Reels'};
+const channelNames={'TG компании':'Юнитрамп · Telegram','TG Романа':'Роман Сотников · Telegram','TG Кирилла':'Кирилл Шувалов · Telegram','TG Екатерины':'Екатерина Тюкавкина · Telegram','TG Оксаны':'Оксана Журман · Telegram','VK':'ВК · посты','VK Клипы':'ВК · клипы','Instagram':'Instagram компании',YouTube:'YouTube · полный выпуск','YouTube Shorts':'YouTube Shorts','IG Reels':'Instagram · Reels'};
 const tags=['Текст','Фото / баннер','Видео','Другое'],labels=LABELS;
 let db=null,storageFailed=false,pending=0,queue=Promise.resolve(),posts=[],targets=new Map(),records=new Map(),audioCache=new Map(),currentKey='',slide=0,urls=[],mediaBusy=false,recording=null,recognition=null,captureToken=0,memoryDirty=false,saveTimer,toastTimer;
 const statusOf=t=>effective(records.get(t.key),t.version);
@@ -191,7 +191,7 @@ $('export').addEventListener('click',exportFeedback);$('import').addEventListene
 window.addEventListener('beforeunload',e=>{if(mediaBusy||pending||memoryDirty){e.preventDefault();e.returnValue='';}});
 async function init(){
  try{
-  const res=await fetch('./review-data.json?v=14',{cache:'no-store'});if(!res.ok)throw Error('План недоступен');const data=await res.json();if(data.month!=='2026-12'||!Array.isArray(data.posts)||data.posts.length===0||new Set(data.posts.map(p=>p.id)).size!==data.posts.length)throw Error('Некорректная версия плана');
+  const res=await fetch('./review-data.json?v=15',{cache:'no-store'});if(!res.ok)throw Error('План недоступен');const data=await res.json();if(data.month!=='2026-12'||!Array.isArray(data.posts)||data.posts.length===0||new Set(data.posts.map(p=>p.id)).size!==data.posts.length)throw Error('Некорректная версия плана');
   const live=await fetch('./dec-2026.json?reviewSource='+data.source_sha256,{cache:'no-store'});if(!live.ok)throw Error('Актуальный план недоступен');const bytes=await live.arrayBuffer();const hash=[...new Uint8Array(await crypto.subtle.digest('SHA-256',bytes))].map(b=>b.toString(16).padStart(2,'0')).join('');if(hash!==data.source_sha256)throw Error('План обновлён. Согласование новой версии ещё готовится; прежние замечания сохранены.');
   posts=data.posts;window.reviewDataVersion=data.version;
   for(const p of posts){const personal=!!p.max_text;targets.set(p.id+'::main',{key:p.id+'::main',post:p,variant:'main',version:p.review_versions.main,text:p.text,html:p.text_html||p.text,media:p.media_items||[],label:(channelNames[p.channel]||p.channel)+(personal?' + Макс':'')});if(personal)targets.set(p.id+'::ig',{key:p.id+'::ig',post:p,variant:'ig',version:p.review_versions.ig,text:p.instagram_text,html:p.instagram_html||p.instagram_text,media:p.instagram_media||p.media_items||[],label:(channelNames[p.channel]||p.channel).replace(' · Telegram','')+' · Instagram'});}

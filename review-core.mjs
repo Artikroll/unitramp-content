@@ -8,7 +8,7 @@ export function safeHTML(html){
  function clean(node){const frag=document.createDocumentFragment();for(const child of node.childNodes){if(child.nodeType===3){frag.append(child.textContent);continue;}if(child.nodeType!==1)continue;if(['SCRIPT','STYLE','IFRAME','OBJECT'].includes(child.tagName))continue;const inner=clean(child);if(!allowed.has(child.tagName)){frag.append(inner);continue;}const el=document.createElement(child.tagName.toLowerCase());if(child.tagName==='A'){try{const u=new URL(child.getAttribute('href'));if(!['http:','https:'].includes(u.protocol)){frag.append(inner);continue;}el.href=u.href;el.target='_blank';el.rel='noopener noreferrer';}catch{frag.append(inner);continue;}}el.append(inner);frag.append(el);}return frag;}
  return clean(doc.body);
 }
-export function mediaURL(path){if(typeof path!=='string'||!/^media\/[A-Za-zА-Яа-яЁё0-9_/. ()-]+$/.test(path)||path.includes('..'))throw Error('Некорректный путь медиа');return new URL(path,location.href).href;}
+export function mediaURL(path){if(path==='https://unitramp.ru/assets/tikitaki-fpv-20261125/tikitaki-fpv-720.mp4')return path;if(typeof path!=='string'||!/^media\/[A-Za-zА-Яа-яЁё0-9_/. ()-]+$/.test(path)||path.includes('..'))throw Error('Некорректный путь медиа');return new URL(path,location.href).href;}
 const enc=new TextEncoder(),dec=new TextDecoder();
 const table=Uint32Array.from({length:256},(_,i)=>{for(let j=0;j<8;j++)i=i&1?0xedb88320^(i>>>1):i>>>1;return i>>>0;});
 export function crc32(bytes){let c=0xffffffff;for(const b of bytes)c=table[(c^b)&255]^(c>>>8);return(c^0xffffffff)>>>0;}
