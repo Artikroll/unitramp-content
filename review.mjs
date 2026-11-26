@@ -1,7 +1,10 @@
-import{SCHEMA,LABELS,effective,touched,safeHTML,mediaURL,zipStore,unzipStored,validateImport}from'./review-core.mjs?v=16';
+import{SCHEMA,LABELS,effective,touched,safeHTML,mediaURL,zipStore,unzipStored,validateImport}from'./review-core.mjs?v=22';
 const $=id=>document.getElementById(id), esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const channelNames={'TG компании':'Юнитрамп · Telegram','TG Романа':'Роман Сотников · Telegram','TG Кирилла':'Кирилл Шувалов · Telegram','TG Екатерины':'Екатерина Тюкавкина · Telegram','TG Оксаны':'Оксана Журман · Telegram','VK':'ВК · посты','VK Клипы':'ВК · клипы','Instagram':'Instagram компании',YouTube:'YouTube · полный выпуск','YouTube Shorts':'YouTube Shorts','IG Reels':'Instagram · Reels'};
-const tags=['Текст','Фото / баннер','Видео','Другое'],labels=LABELS;
+const textOnly=new URL(location.href).searchParams.get('mode')==='text',mainVariant=textOnly?'text':'main';
+const tags=textOnly?['Текст','Другое']:['Текст','Фото / баннер','Видео','Другое'],labels=LABELS;
+if(textOnly){document.body.classList.add('text-only');document.querySelector('.heading h1').textContent='Проверка текстов декабря';document.querySelector('.heading p').textContent='Только тексты. Решения по баннерам хранятся отдельно.';document.querySelector('.intro h2').textContent='Сначала смысл. Потом решение.';}
+const modeLink=document.getElementById('mode-link');if(textOnly&&modeLink){modeLink.href='review.html?v=22';modeLink.textContent='Полные посты ↗';}
 let db=null,storageFailed=false,pending=0,queue=Promise.resolve(),posts=[],targets=new Map(),records=new Map(),audioCache=new Map(),currentKey='',slide=0,urls=[],mediaBusy=false,recording=null,recognition=null,captureToken=0,memoryDirty=false,saveTimer,toastTimer;
 const statusOf=t=>effective(records.get(t.key),t.version);
 function toast(s){$('toast').textContent=s;$('toast').hidden=false;clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('toast').hidden=true,4500);}
@@ -35,7 +38,7 @@ async function getAudio(id){
  const x=await new Promise((resolve,reject)=>{const q=db.transaction('audio').objectStore('audio').get(id);q.onsuccess=()=>resolve(q.result);q.onerror=()=>reject(q.error);});
  if(x?.blob)audioCache.set(id,x.blob);return x?.blob||null;
 }
-function visibleTargets(p){const out=[targets.get(p.id+'::main')];if(targets.has(p.id+'::ig'))out.push(targets.get(p.id+'::ig'));return out;}
+function visibleTargets(p){if(textOnly)return[targets.get(p.id+'::text')];const out=[targets.get(p.id+'::'+mainVariant)];if(targets.has(p.id+'::ig'))out.push(targets.get(p.id+'::ig'));return out;}
 function matching(t){
  const filter=$('status-filter').value,r=records.get(t.key);
  return !filter||(filter==='commented'?(r?.notes?.trim()||r?.attachments?.some(a=>!a.removed)):statusOf(t)===filter);
@@ -49,20 +52,21 @@ function renderList(){
  $('post-list').innerHTML=a.length?a.map(p=>{const ts=visibleTargets(p),active=ts.some(t=>t.key===currentKey),s=statusOf(ts[0]),bits=ts.map(t=>(t.variant==='ig'?'IG':p.channel.startsWith('TG ')?'TG':'')+(t.variant==='ig'||p.channel.startsWith('TG ')?' · ':'')+labels[statusOf(t)]).join(' / ');return'<button type="button" data-post="'+esc(p.id)+'" class="'+(active?'active':'')+'" aria-current="'+(active?'true':'false')+'" '+(mediaBusy?'disabled':'')+'><span class="item-meta"><b>'+esc(p.id)+'</b><span>'+p.date.slice(8)+'.12</span></span><span class="item-title">'+esc(p.title)+'</span><span class="item-status '+s+'">'+esc(bits)+'</span></button>';}).join(''):'<p class="empty">Здесь пока нет постов. Попробуй другой канал или решение.</p>';
 }
 function updateSummary(){
- const count={pending:0,approved:0,rework:0,remove:0};for(const t of targets.values())count[statusOf(t)]++;
- for(const k in count)$('n-'+k).textContent=count[k];const checked=targets.size-count.pending;$('progress-fill').style.width=checked/targets.size*100+'%';
- $('plan-count').textContent=posts.length+' поста · '+targets.size+' версий для согласования · проверено '+checked;
+ const count={pending:0,approved:0,rework:0,remove:0};const active=posts.flatMap(visibleTargets);for(const t of active)count[statusOf(t)]++;
+ for(const k in count)$('n-'+k).textContent=count[k];const checked=active.length-count.pending;$('progress-fill').style.width=checked/active.length*100+'%';
+ $('plan-count').textContent=posts.length+' поста · '+active.length+(textOnly?' текстов для проверки':' версий для согласования')+' · проверено '+checked;
 }
 function updateDecision(){
  const t=targets.get(currentKey);if(!t)return;const r=recordFor(t),s=statusOf(t),el=$('current-decision');el.textContent=labels[s];el.className='decision '+s;
  $('stale').hidden=!(r.decision&&r.decisionVersion!==t.version);$('clear-decision').hidden=!r.decision;
  for(const b of document.querySelectorAll('[data-decision]')){b.classList.toggle('selected',b.dataset.decision===s);b.setAttribute('aria-pressed',String(b.dataset.decision===s));}
- $('scope').textContent='Решение относится к версии «'+t.label+'». '+(t.post.instagram_text&&t.variant==='main'?'Instagram проверяется отдельно.':'');
+ $('scope').textContent=textOnly?'Решение относится только к тексту. Баннеры и видео этим не одобряются.':'Решение относится к версии «'+t.label+'». '+(t.post.instagram_text&&t.variant==='main'?'Instagram проверяется отдельно.':'');
 }
 function renderTags(){
  const r=recordFor(targets.get(currentKey));$('tags').innerHTML=tags.map(s=>'<button type="button" data-tag="'+esc(s)+'" aria-pressed="'+r.tags.includes(s)+'">'+esc(s)+'</button>').join('');
 }
 function renderMedia(){
+ if(textOnly){$('media').hidden=true;$('media').replaceChildren();return;}
  for(const u of urls)URL.revokeObjectURL(u);urls=[];const t=targets.get(currentKey),a=t.media||[],m=a[slide];$('media').replaceChildren();
  if(!m){$('media').innerHTML='<p class="muted">'+(t.post.poll?'Это опрос — изображение не требуется.':'Текстовая публикация — без изображения.')+'</p>';return;}
  const figure=document.createElement('figure'),asset=document.createElement(m.kind==='video'?'video':'img');asset.src=mediaURL(m.file);
@@ -84,18 +88,18 @@ async function renderAudios(){
  }
 }
 function renderCurrent(){
- const t=targets.get(currentKey),r=recordFor(t),p=t.post;error('',true);$('post-id').textContent=p.id;$('post-date').textContent=p.date.slice(8)+'.12 · '+p.time+' ЕКБ';$('post-channel').textContent=t.label;$('post-title').textContent=p.title;$('post-format').textContent=t.variant==='ig'?'Instagram · адаптация':p.format;$('post-format').textContent+=(p.publication_dependency?' · После полного FPV-выпуска 9 декабря':'');$('review-for').textContent=p.id+' · твоё решение';
+ const t=targets.get(currentKey),r=recordFor(t),p=t.post;error('',true);$('post-id').textContent=p.id;$('post-date').textContent=p.date.slice(8)+'.12 · '+p.time+' ЕКБ';$('post-channel').textContent=t.label;$('post-title').textContent=p.title;$('post-format').textContent=textOnly?'Проверка текста':t.variant==='ig'?'Instagram · адаптация':p.format;$('post-format').textContent+=(p.publication_dependency?' · После полного FPV-выпуска 9 декабря':'');$('review-for').textContent=p.id+(textOnly?' · решение по тексту':' · твоё решение');
  $('notes').value=r.notes;$('post-text').replaceChildren(safeHTML(t.html));
  const variants=visibleTargets(p);$('variant-tabs').innerHTML=variants.length>1?variants.map(x=>'<button type="button" data-variant="'+x.variant+'" class="'+(x.key===currentKey?'active':'')+'" '+(mediaBusy?'disabled':'')+'>'+esc(x.variant==='ig'?'Instagram':'Telegram + Макс')+'</button>').join(''):'';
  const extra=[];if(p.poll)extra.push('ОПРОС\n'+p.poll.question+'\n'+p.poll.options.map((v,i)=>(i+1)+'. '+v).join('\n')+'\n'+(p.poll.multiple_answers?'Можно выбрать несколько ответов':'Один вариант ответа'));if(p.first_comment)extra.push('ПЕРВЫЙ КОММЕНТАРИЙ\n'+p.first_comment);
  $('extras').replaceChildren();for(const s of extra){const box=document.createElement('div');box.className='extras';box.textContent=s;$('extras').append(box);}
- renderMedia();renderAudios();renderTags();updateDecision();renderList();updateSteps();history.replaceState(null,'','#'+encodeURIComponent(p.id)+'/'+t.variant);
+ renderMedia();renderAudios();renderTags();updateDecision();renderList();updateSteps();history.replaceState(null,'','#'+encodeURIComponent(p.id)+'/'+t.variant);if(modeLink)modeLink.href='review.html?'+(textOnly?'v=22':'mode=text&v=22')+'#'+encodeURIComponent(p.id)+'/'+(textOnly?'main':'text');
 }
 function updateSteps(){const a=filtered(),id=targets.get(currentKey)?.post.id,i=a.findIndex(p=>p.id===id);$('position').textContent=(i<0?'—':i+1)+' / '+a.length;$('prev').disabled=mediaBusy||i<=0;$('next').disabled=mediaBusy||i<0||i>=a.length-1;}
 function go(key){
  if(mediaBusy){toast('Сначала заверши запись или диктовку.');return;}if(!targets.has(key))return;currentKey=key;slide=0;renderCurrent();if(matchMedia('(max-width:980px)').matches)$('postnav').open=false;
 }
-function goRelative(n){const a=filtered(),i=a.findIndex(p=>p.id===targets.get(currentKey).post.id),p=a[i+n];if(p)go(visibleTargets(p).find(matching)?.key||p.id+'::main');}
+function goRelative(n){const a=filtered(),i=a.findIndex(p=>p.id===targets.get(currentKey).post.id),p=a[i+n];if(p)go(visibleTargets(p).find(matching)?.key||p.id+'::'+mainVariant);}
 function time(s){const n=Math.max(0,Math.floor(s));return String(Math.floor(n/60)).padStart(2,'0')+':'+String(n%60).padStart(2,'0');}
 function lock(v){mediaBusy=v;$('export').disabled=v;$('import').disabled=v;$('attach-audio').disabled=v;$('search').disabled=v;$('channel').disabled=v;$('status-filter').disabled=v;for(const b of document.querySelectorAll('[data-variant]'))b.disabled=v;renderList();updateSteps();}
 function resetVoice(){lock(false);$('record').hidden=false;$('record').disabled=false;$('stop-record').hidden=true;$('timer').hidden=true;$('notes').readOnly=false;$('dictate').textContent='Начать диктовку';$('record').disabled=!(window.MediaRecorder&&navigator.mediaDevices?.getUserMedia);}
@@ -172,7 +176,7 @@ async function importFeedback(file){
 }
 $('search').addEventListener('input',()=>{renderList();updateSteps();});
 for(const k of ['channel','status-filter'])$(k).addEventListener('change',()=>{renderList();updateSteps();});
-$('post-list').addEventListener('click',e=>{const b=e.target.closest('[data-post]');if(b){const p=posts.find(x=>x.id===b.dataset.post);go(visibleTargets(p).find(matching)?.key||p.id+'::main');}});
+$('post-list').addEventListener('click',e=>{const b=e.target.closest('[data-post]');if(b){const p=posts.find(x=>x.id===b.dataset.post);go(visibleTargets(p).find(matching)?.key||p.id+'::'+mainVariant);}});
 $('variant-tabs').addEventListener('click',e=>{const b=e.target.closest('[data-variant]');if(b)go(targets.get(currentKey).post.id+'::'+b.dataset.variant);});
 $('media').addEventListener('click',e=>{const b=e.target.closest('[data-slide]');if(b){slide=Number(b.dataset.slide);renderMedia();renderAudios();}});
 $('notes').addEventListener('input',()=>change(r=>r.notes=$('notes').value));
@@ -194,9 +198,9 @@ async function init(){
   const res=await fetch('./review-data.json?v=15',{cache:'no-store'});if(!res.ok)throw Error('План недоступен');const data=await res.json();if(data.month!=='2026-12'||!Array.isArray(data.posts)||data.posts.length===0||new Set(data.posts.map(p=>p.id)).size!==data.posts.length)throw Error('Некорректная версия плана');
   const live=await fetch('./dec-2026.json?reviewSource='+data.source_sha256,{cache:'no-store'});if(!live.ok)throw Error('Актуальный план недоступен');const bytes=await live.arrayBuffer();const hash=[...new Uint8Array(await crypto.subtle.digest('SHA-256',bytes))].map(b=>b.toString(16).padStart(2,'0')).join('');if(hash!==data.source_sha256)throw Error('План обновлён. Согласование новой версии ещё готовится; прежние замечания сохранены.');
   posts=data.posts;window.reviewDataVersion=data.version;
-  for(const p of posts){const personal=!!p.max_text;targets.set(p.id+'::main',{key:p.id+'::main',post:p,variant:'main',version:p.review_versions.main,text:p.text,html:p.text_html||p.text,media:p.media_items||[],label:(channelNames[p.channel]||p.channel)+(personal?' + Макс':'')});if(personal&&p.instagram_text&&p.review_versions.ig)targets.set(p.id+'::ig',{key:p.id+'::ig',post:p,variant:'ig',version:p.review_versions.ig,text:p.instagram_text,html:p.instagram_html||p.instagram_text,media:p.instagram_media||p.media_items||[],label:(channelNames[p.channel]||p.channel).replace(' · Telegram','')+' · Instagram'});}
+  for(const p of posts){const personal=!!p.max_text;targets.set(p.id+'::text',{key:p.id+'::text',post:p,variant:'text',version:p.review_versions.text,text:p.text,html:p.text_html||p.text,media:[],label:(channelNames[p.channel]||p.channel)+' · текст'});targets.set(p.id+'::main',{key:p.id+'::main',post:p,variant:'main',version:p.review_versions.main,text:p.text,html:p.text_html||p.text,media:p.media_items||[],label:(channelNames[p.channel]||p.channel)+(personal?' + Макс':'')});if(personal&&p.instagram_text&&p.review_versions.ig)targets.set(p.id+'::ig',{key:p.id+'::ig',post:p,variant:'ig',version:p.review_versions.ig,text:p.instagram_text,html:p.instagram_html||p.instagram_text,media:p.instagram_media||p.media_items||[],label:(channelNames[p.channel]||p.channel).replace(' · Telegram','')+' · Instagram'});}
   await initDB();for(const c of [...new Set(posts.map(p=>p.channel))]){const op=document.createElement('option');op.value=c;op.textContent=channelNames[c]||c;$('channel').append(op);}
-  const h=decodeURIComponent(location.hash.slice(1)).split('/'),key=h[0]+'::'+(h[1]||'main');currentKey=targets.has(key)?key:posts[0].id+'::main';
+  const h=decodeURIComponent(location.hash.slice(1)).split('/'),key=h[0]+'::'+(textOnly?'text':h[1]==='text'?'main':h[1]||'main');currentKey=targets.has(key)?key:posts[0].id+'::'+mainVariant;
   $('workspace').hidden=false;$('loading').hidden=true;$('export').disabled=false;if(matchMedia('(max-width:980px)').matches)$('postnav').open=false;
   $('dictation-options').hidden=!(window.SpeechRecognition||window.webkitSpeechRecognition);if(!(window.MediaRecorder&&navigator.mediaDevices?.getUserMedia)){$('record').disabled=true;$('voice-state').textContent='Запись микрофона здесь недоступна. Можно прикрепить аудио или ввести текст.';}
   updateSummary();renderCurrent();

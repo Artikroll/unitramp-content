@@ -3,3 +3,6 @@
 .mobile-jump{display:none}@media(max-width:700px){.mobile-jump{display:flex;margin:10px 16px 17px}.review-panel>.mobile-jump{margin:0 0 20px}.review-panel{scroll-margin-top:15px}}
 
 .feedback-history{border:1px solid #d3dce6;border-radius:12px;padding:12px;margin-top:14px}.feedback-history summary{cursor:pointer;color:#536579;font-weight:600}.feedback-history .audio-row{margin-top:12px}
+
+/* Separate text-review scope; shared records/audio remain intact. */
+body.text-only .rich-text{font-size:18px;line-height:1.7}body.text-only .post-copy{padding-top:10px}body.text-only #media{display:none!important}

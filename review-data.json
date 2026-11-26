@@ -1,7 +1,7 @@
 {
   "month": "2026-12",
-  "source_sha256": "5c12b021e56883e39b2142963d854dc086ffa06551837d26b50fcb8c932989b6",
-  "version": "ac5be7203a4daa9ed940e67fa71579b8539e931852fc79dc158cf6fc9c4931f9",
+  "source_sha256": "793fd0e95273239bf5159937be2cd50ad6dabea929cd6205a6b6a68378757c8f",
+  "version": "90b9e4d0c94c4f58c50741620d658ac252f9eef1cec76e34a6423245f2fb4aa9",
   "posts": [
     {
       "id": "ТГ-01",
@@ -39,7 +39,8 @@
         "interactions": null
       },
       "review_versions": {
-        "main": "f8b555b1c1a6f9117e48685848406c5b5ac5b16cdeeb9964c6e4fbff5542ccc4"
+        "main": "f8b555b1c1a6f9117e48685848406c5b5ac5b16cdeeb9964c6e4fbff5542ccc4",
+        "text": "7737ac0a17fe5e6ce0b3185c9b56d529c1987bdd9389065d12299085054b7861"
       }
     },
     {
@@ -54,7 +55,7 @@
       "text_html": "<p><strong>Лабиринт, стены и входная зона формируют одно впечатление от парка.</strong></p><p>Поэтому мы подбираем палитру сразу для всего зала. Определяем, что станет ярким игровым акцентом, а что останется фоном. Один оттенок на небольшой детали и на большой стене выглядит по-разному.</p><p>У каждой зоны при этом сохраняются свои формы и занятия. Цвет и оформление связывают их между собой: гость переходит от одной игры к другой, оставаясь в пространстве с общей темой.</p><p>Сайт: <a href=\"https://unitramp.ru/\" target=\"_blank\" rel=\"noopener\">https://unitramp.ru/</a></p>",
       "media_items": [
         {
-          "file": "media/dec-2026-v21/ВК-01-1.webp",
+          "file": "media/dec-2026-v22/ВК-01-1.webp",
           "kind": "photo",
           "generated": false,
           "caption": "Реальная фотография · оформление"
@@ -66,7 +67,8 @@
         "interactions": null
       },
       "review_versions": {
-        "main": "87135f617e14b26c0bc3742981b6a544dd1544ebc31db9da6f5ed8d10f911727"
+        "main": "deabbc81a5f5e205387a63eb7252cae047b9d1a90b003bb95ecc6aa611344902",
+        "text": "981c2026168677d5e9892959cf9e060e47883b64bb3071d2fa4fddb061ec44e2"
       }
     },
     {
@@ -95,7 +97,8 @@
         "interactions": null
       },
       "review_versions": {
-        "main": "0f0acf006f9b95b4f187ea5d26549610cfaa89ac10b50d62290fb3cbfe2ba2a2"
+        "main": "0f0acf006f9b95b4f187ea5d26549610cfaa89ac10b50d62290fb3cbfe2ba2a2",
+        "text": "356432eee09f4179ff330d1bec2431bda3b01af3325230b61df2e8f94910d2d0"
       }
     },
     {
@@ -132,7 +135,8 @@
       "source_post_id": "ВИД-01",
       "thumbnail_note": "Кадр монтажа. Текст: «7 секунд монтажа».",
       "review_versions": {
-        "main": "a2a7d3823e974beb5c97d6890c4f4b17744646ac024f4e02578cb423ae71b6d7"
+        "main": "a2a7d3823e974beb5c97d6890c4f4b17744646ac024f4e02578cb423ae71b6d7",
+        "text": "fc267a3d59f7492614327f499117d077fb3307788d25d2096f0e6700d7180a5c"
       }
     },
     {
@@ -161,7 +165,8 @@
         "interactions": null
       },
       "review_versions": {
-        "main": "d325667eab75447cd5b03fc9bda4a44a337aaf32d90e2c1ae12403e34187ab0b"
+        "main": "d325667eab75447cd5b03fc9bda4a44a337aaf32d90e2c1ae12403e34187ab0b",
+        "text": "5164356fb8213f91a5360890e7e3e539e2ca33b44a06376147d9ef7fb0977540"
       }
     },
     {
@@ -190,7 +195,8 @@
       "youtube_tags": [],
       "thumbnail_note": "Кадр монтажа. Текст: «Монтаж ниндзя-парка».",
       "review_versions": {
-        "main": "53c256d8eb05e8c8b2b542bb07c0abee2e1ce8a8bda903b0700d8d01b2054e9e"
+        "main": "53c256d8eb05e8c8b2b542bb07c0abee2e1ce8a8bda903b0700d8d01b2054e9e",
+        "text": "1fd104614bc8e9baecff6dc76ddd0b87aeafe45d97f7460293446063ab5c46ae"
       }
     },
     {
@@ -217,7 +223,8 @@
         "interactions": null
       },
       "review_versions": {
-        "main": "edb5efcdb8addeb8d6b2204ebe1ecf9422907c7a3c13227448412dbbe99281d9"
+        "main": "edb5efcdb8addeb8d6b2204ebe1ecf9422907c7a3c13227448412dbbe99281d9",
+        "text": "c0800558c14b2724ee0c32a806032a9a219fbb14acd89ffe287161ffd7ae5f23"
       }
     },
     {
@@ -246,7 +253,8 @@
         "interactions": null
       },
       "review_versions": {
-        "main": "d4dc869b31c82daa8e74c348af89de5dc8e325b80e4a8e148d600e4cff0a1484"
+        "main": "d4dc869b31c82daa8e74c348af89de5dc8e325b80e4a8e148d600e4cff0a1484",
+        "text": "d4f62d4c87db416365fe57153a1834e06f927703d90643d0dd37bc27eb82f695"
       }
     },
     {
@@ -273,7 +281,8 @@
         "interactions": null
       },
       "review_versions": {
-        "main": "fc4896cf935a81cc8e2539411fa43a1d1856a0e433ecbc9b400eab341ae7a2b7"
+        "main": "fc4896cf935a81cc8e2539411fa43a1d1856a0e433ecbc9b400eab341ae7a2b7",
+        "text": "ab02c689c7bfc86676f315b9d1b51e268192ae7b2757ff3c2a33e9f9bb94d916"
       }
     },
     {
@@ -318,7 +327,8 @@
         "interactions": null
       },
       "review_versions": {
-        "main": "85640745e006a30fc514a38bf13fb8243ee3222942ff8cc050c61268f96bcfaf"
+        "main": "85640745e006a30fc514a38bf13fb8243ee3222942ff8cc050c61268f96bcfaf",
+        "text": "267ff6142c4a612292632221f776da81ef7aa76a666260cf3ec0a51e6055c317"
       }
     },
     {
@@ -345,7 +355,8 @@
         "interactions": null
       },
       "review_versions": {
-        "main": "f29c3cb8e8048fe5fbcc3d3a48889b54c0cb9712cb089f383e42aeb91b9cdf5d"
+        "main": "f29c3cb8e8048fe5fbcc3d3a48889b54c0cb9712cb089f383e42aeb91b9cdf5d",
+        "text": "c06497b6ce6ffc644587f807eb05b548b82f0b0b1bef41b496cd6739f3fe9491"
       }
     },
     {
@@ -376,7 +387,8 @@
         "interactions": null
       },
       "review_versions": {
-        "main": "15b5aee0b45361153d095134de49720731ed0ebc4caafed9767f467564048455"
+        "main": "15b5aee0b45361153d095134de49720731ed0ebc4caafed9767f467564048455",
+        "text": "5145b7610cd81dc3172455708b097856d9081da408d13f08589025925f73cb5b"
       }
     },
     {
@@ -415,7 +427,8 @@
         "interactions": null
       },
       "review_versions": {
-        "main": "9dfabc50e11b970ad366bf8155bfbc1a69427bfd8a85428607852c83e2abc454"
+        "main": "9dfabc50e11b970ad366bf8155bfbc1a69427bfd8a85428607852c83e2abc454",
+        "text": "2ba86091d09c1b4c47745ff4ae4ca8f164386e558079f385adb5ba4efb45ec23"
       }
     },
     {
@@ -444,7 +457,8 @@
         "interactions": null
       },
       "review_versions": {
-        "main": "f5e0bb99f52fd95af6c8d84abda2a784a4ee102a399b3252d515b8621e3211de"
+        "main": "f5e0bb99f52fd95af6c8d84abda2a784a4ee102a399b3252d515b8621e3211de",
+        "text": "d8a650a3e19f0f8fe5818d386a0d3f7746a6d5e45e8264e1daa377e63754032a"
       }
     },
     {
@@ -471,7 +485,8 @@
         "interactions": null
       },
       "review_versions": {
-        "main": "5435a9b25fdc0c953a7e4f162d018699acd6d03d83b6360e29311839ec68084f"
+        "main": "5435a9b25fdc0c953a7e4f162d018699acd6d03d83b6360e29311839ec68084f",
+        "text": "0dd4223ea44fa3849369252a03b9401d9eb6f0a227ef7ccf7082b005baeea69b"
       }
     },
     {
@@ -500,7 +515,8 @@
         "interactions": null
       },
       "review_versions": {
-        "main": "20e038edb1909e922ab90105dd26f0aa6693bd319b9b24e990b05097c0a836b9"
+        "main": "20e038edb1909e922ab90105dd26f0aa6693bd319b9b24e990b05097c0a836b9",
+        "text": "c9383009a0b0bb0641d45cc1d174c31ccd5e6ef80d9dd73a2d01957ae78fa879"
       }
     },
     {
@@ -515,7 +531,7 @@
       "text_html": "<p><strong>Форма зацепа меняет то, как участник проходит препятствие.</strong></p><p>Одну опору удобно держать всей ладонью, за другую нужно взяться пальцами. От расположения зацепов зависит следующий переход и перенос веса.</p><p>При подборе элементов ниндзя-зоны мы рассматриваем, какую задачу каждая панель добавляет в маршрут. Сопоставляем варианты с возрастом и подготовкой участников, проверяем характеристики оборудования.</p><p>Так зацепы становятся частью продуманной трассы с разными заданиями.</p><p>Сайт: <a href=\"https://ninja.unitramp.ru/\" target=\"_blank\" rel=\"noopener\">https://ninja.unitramp.ru/</a></p>",
       "media_items": [
         {
-          "file": "media/dec-2026-v21/ВК-03-1.webp",
+          "file": "media/dec-2026-v22/ВК-03-1.webp",
           "kind": "photo",
           "generated": false,
           "caption": "Реальная фотография · оформление"
@@ -527,7 +543,8 @@
         "interactions": null
       },
       "review_versions": {
-        "main": "99cb1ea42294cf822a728c4c3d47fcdd1bfe097b2f586e14f5a793d773b78f8f"
+        "main": "0fc13519d8fbde8e131a0f2dfbbc879bf1fe692da15038976bee896db74ae925",
+        "text": "b1bfcef9494c7eda61d4fb443d6046cedd6ac73c9415135779a8868deb56386c"
       }
     },
     {
@@ -556,7 +573,8 @@
         "interactions": null
       },
       "review_versions": {
-        "main": "e2a2108782a0de6189419d2de4b2f4df818426b7722950584e700b5897bce82e"
+        "main": "e2a2108782a0de6189419d2de4b2f4df818426b7722950584e700b5897bce82e",
+        "text": "65483f0bc225b38f8904b303d1e47b253168e778a70c3a04a5c1926d5e7bcbe8"
       }
     },
     {
@@ -593,7 +611,8 @@
       "youtube_title": "ТикиТаки: полный FPV-обзор семейного парка",
       "youtube_description": "Пролетаем дроном по семейному парку «ТикиТаки». Полный FPV-маршрут занимает 4 минуты 29 секунд.\n\nКамера проходит через игровые зоны и многоуровневый лабиринт, заглядывает к батутам, в комнаты для праздников и кафе. Можно рассмотреть, как разные части парка соединены между собой.\n\nUNITRAMP проектирует и строит комплексные детские и семейные парки.\nСайт: https://unitramp.ru/\n\n#ТикиТаки #СемейныйПарк #UNITRAMP",
       "review_versions": {
-        "main": "eaabe7a83a7a7a23623859662ccc7aa53e2227c8c8391c9056ada22510839d59"
+        "main": "eaabe7a83a7a7a23623859662ccc7aa53e2227c8c8391c9056ada22510839d59",
+        "text": "25c6a0851c91c50a9b47e2a732f954c1daa68ee4212f259b3a9c8a92c437d2fd"
       }
     },
     {
@@ -620,7 +639,8 @@
         "interactions": null
       },
       "review_versions": {
-        "main": "02e5822c5d5bdb893680539200edd674cd46f2b2f46a31823d8f43df567523c8"
+        "main": "02e5822c5d5bdb893680539200edd674cd46f2b2f46a31823d8f43df567523c8",
+        "text": "3c2ca0da815f6c07b5ec0193679886d3068e6839f04c909d31d5751d875d4264"
       }
     },
     {
@@ -647,7 +667,8 @@
         "interactions": null
       },
       "review_versions": {
-        "main": "ddb0208e7e3c14b85c211ed1f0175013813a4f96acf67fa0b19bd5ead68022f9"
+        "main": "ddb0208e7e3c14b85c211ed1f0175013813a4f96acf67fa0b19bd5ead68022f9",
+        "text": "1fe531e0fad247f411ab41ef34c10b28673e10604ae77db511806f705aad1355"
       }
     },
     {
@@ -662,49 +683,49 @@
       "text_html": "<p><strong>В «ТикиТаки» можно менять занятия в течение одного семейного визита.</strong></p><p>Пройти многоуровневый лабиринт, попробовать батуты, заглянуть в ролевую зону или включиться в интерактивную игру. Для младших детей есть свои занятия, между активностями можно зайти в кафе и отдохнуть.</p><p>Когда разрабатываем концепцию семейного парка, продумываем это сочетание целиком. Какие гости будут приходить вместе? Что заинтересует детей разного возраста? Где семья сможет собраться после игры?</p><p>Ответы помогают подобрать состав зон и разместить их в конкретном помещении.</p><p>#юнитрамп #тикитаки #семейныйпарк #игровыезоны</p>",
       "media_items": [
         {
-          "file": "media/dec-2026-v21/IG-04-1.webp",
+          "file": "media/dec-2026-v22/IG-04-1.webp",
           "kind": "photo",
           "caption": "Реальная фотография · оформление",
           "generated": false
         },
         {
-          "file": "media/dec-2026-v21/IG-04-2.webp",
+          "file": "media/dec-2026-v22/IG-04-2.webp",
           "kind": "photo",
           "caption": "Реальная фотография · оформление",
           "generated": false
         },
         {
-          "file": "media/dec-2026-v21/IG-04-3.webp",
+          "file": "media/dec-2026-v22/IG-04-3.webp",
           "kind": "photo",
           "caption": "Реальная фотография · оформление",
           "generated": false
         },
         {
-          "file": "media/dec-2026-v21/IG-04-4.webp",
+          "file": "media/dec-2026-v22/IG-04-4.webp",
           "kind": "photo",
           "caption": "Реальная фотография · оформление",
           "generated": false
         },
         {
-          "file": "media/dec-2026-v21/IG-04-5.webp",
+          "file": "media/dec-2026-v22/IG-04-5.webp",
           "kind": "photo",
           "caption": "Реальная фотография · оформление",
           "generated": false
         },
         {
-          "file": "media/dec-2026-v21/IG-04-6.webp",
+          "file": "media/dec-2026-v22/IG-04-6.webp",
           "kind": "photo",
           "caption": "Реальная фотография · оформление",
           "generated": false
         },
         {
-          "file": "media/dec-2026-v21/IG-04-7.webp",
+          "file": "media/dec-2026-v22/IG-04-7.webp",
           "kind": "photo",
           "caption": "Реальная фотография · оформление",
           "generated": false
         },
         {
-          "file": "media/dec-2026-v21/IG-04-8.webp",
+          "file": "media/dec-2026-v22/IG-04-8.webp",
           "kind": "photo",
           "caption": "Реальная фотография · оформление",
           "generated": false
@@ -716,7 +737,8 @@
         "interactions": null
       },
       "review_versions": {
-        "main": "bac7d9703a7983812a87a067021b368405b6b7c4695206811b6ccae558721c6f"
+        "main": "1ab813b21a61b58d9ebf30734e7bee48187c5bdfff85b406e95c8f78ca0e997d",
+        "text": "32ae59e2eb425cbcaa04c9c30c2bdddc0717a8fff936814668b413312ac4ee0b"
       }
     },
     {
@@ -745,7 +767,8 @@
         "interactions": null
       },
       "review_versions": {
-        "main": "410729fec075cd89cb0d0baa25a025188c0c552c99bdee8e948e3b50184dd9c5"
+        "main": "410729fec075cd89cb0d0baa25a025188c0c552c99bdee8e948e3b50184dd9c5",
+        "text": "6d787173d3936141ec0728b4750ef36edf0321cd671a58a962c357af1920f8ca"
       }
     },
     {
@@ -782,7 +805,8 @@
       "source_post_id": "ВИД-04",
       "thumbnail_note": "Кадр из отдельного вертикального кропа YT04. Текст: «ASMA Park: игровые зоны».",
       "review_versions": {
-        "main": "57e3b1b12910746d702a2ad925a79e9835c4d17ab353cd13367ab7c4bb8aa46f"
+        "main": "57e3b1b12910746d702a2ad925a79e9835c4d17ab353cd13367ab7c4bb8aa46f",
+        "text": "2a9ccf6db8b5286f2caeaae15baf611902b020e4c356381391ead2c612be6552"
       }
     },
     {
@@ -809,7 +833,8 @@
         "interactions": null
       },
       "review_versions": {
-        "main": "d7e866d41b6c1a17e6e278757fc3142479beaac6b57fc8ec779dc8927d61d879"
+        "main": "d7e866d41b6c1a17e6e278757fc3142479beaac6b57fc8ec779dc8927d61d879",
+        "text": "42245393b0a9e9203be754b584c571fd1fdcb567f71070463d2cc406d3bde934"
       }
     },
     {
@@ -836,7 +861,8 @@
         "interactions": null
       },
       "review_versions": {
-        "main": "f06b171236b762007d3a939fb2c0c4de75315dde099743726b3dc64b7bc9ca56"
+        "main": "f06b171236b762007d3a939fb2c0c4de75315dde099743726b3dc64b7bc9ca56",
+        "text": "2311256ca1dd5d236675b885c9dd9cc34006d171c9190f4cedc9a1cbb8efaf17"
       }
     },
     {
@@ -865,7 +891,8 @@
         "interactions": null
       },
       "review_versions": {
-        "main": "0c861e0963c476dd4b53aa1a63eb3e7298aa9076341e0863f69b335916b92b13"
+        "main": "0c861e0963c476dd4b53aa1a63eb3e7298aa9076341e0863f69b335916b92b13",
+        "text": "b10d40d071f073139e6297e12ab3a9fe43dfa75ca0573f6fd324c28cdfc0c96a"
       }
     },
     {
@@ -894,7 +921,8 @@
       "youtube_tags": [],
       "thumbnail_note": "Общий вид из горизонтального ролика. Текст: «ASMA Park: игровые зоны».",
       "review_versions": {
-        "main": "5a5ee090c5cb149fd5a7a7db73f02292fee7a996d0a9276570a1e46e2e619466"
+        "main": "5a5ee090c5cb149fd5a7a7db73f02292fee7a996d0a9276570a1e46e2e619466",
+        "text": "9caa064bccb56603a054d74ccbb0263f9edea80cc9667bbbaea1e7bcb5c115d1"
       }
     },
     {
@@ -933,7 +961,8 @@
         "interactions": null
       },
       "review_versions": {
-        "main": "92158f42eed33125bc74e755e2e495c7241da28ad2b5919df52520637de86e3b"
+        "main": "92158f42eed33125bc74e755e2e495c7241da28ad2b5919df52520637de86e3b",
+        "text": "309045f01a90128723399a3445a1814aaa91e387d65889ef5617530c50edd86a"
       }
     },
     {
@@ -962,7 +991,8 @@
         "interactions": null
       },
       "review_versions": {
-        "main": "8cda9421ee03a5e63e235ae561f023e70f2240e2a7d7651d936769e284d88160"
+        "main": "8cda9421ee03a5e63e235ae561f023e70f2240e2a7d7651d936769e284d88160",
+        "text": "148c73b917f37ba181bec594362d63203e9db515cb2e66c65ab4e4ae53bb8f03"
       }
     },
     {
@@ -989,7 +1019,8 @@
         "interactions": null
       },
       "review_versions": {
-        "main": "bf3abef1985bfeb4220a1466fc77d20e9aa70762111f03f25e43845a90935bb2"
+        "main": "bf3abef1985bfeb4220a1466fc77d20e9aa70762111f03f25e43845a90935bb2",
+        "text": "17b91be122b2beb1ba84f96946792b5a33827d32815dc98a526db6d33b4354ac"
       }
     },
     {
@@ -1004,19 +1035,19 @@
       "text_html": "<p><strong>В одном семейном парке можно спуститься с горки, проверить меткость в интерактивной игре и исследовать игровой маршрут.</strong></p><p>В Bezoom эти занятия соседствуют в одном пространстве. Они отличаются и движениями, и темпом: где-то нужно пройти маршрут, где-то сосредоточиться на цели, а где-то исследовать игровое пространство.</p><p>Когда подбираем состав будущего парка, сравниваем сами игры: что участник будет делать, для какого возраста подходит занятие и как оно дополнит остальные зоны. Затем размещаем выбранное оборудование, учитывая место для игры и ожидания.</p><p>Так у парка появляется выбор развлечений для разных интересов.</p><p>Сайт: <a href=\"https://unitramp.ru/\" target=\"_blank\" rel=\"noopener\">https://unitramp.ru/</a></p>",
       "media_items": [
         {
-          "file": "media/dec-2026-v21/ВК-05-1.webp",
+          "file": "media/dec-2026-v22/ВК-05-1.webp",
           "kind": "photo",
           "generated": false,
           "caption": "Реальная фотография · оформление"
         },
         {
-          "file": "media/dec-2026-v21/ВК-05-2.webp",
+          "file": "media/dec-2026-v22/ВК-05-2.webp",
           "kind": "photo",
           "generated": false,
           "caption": "Реальная фотография · оформление"
         },
         {
-          "file": "media/dec-2026-v21/ВК-05-3.webp",
+          "file": "media/dec-2026-v22/ВК-05-3.webp",
           "kind": "photo",
           "generated": false,
           "caption": "Реальная фотография · оформление"
@@ -1028,7 +1059,8 @@
         "interactions": null
       },
       "review_versions": {
-        "main": "2a75d1854483aaaa00ec16aa45bf332f62b9bd6b999443644a245e1ba8f98594"
+        "main": "92eabebbec4ad8ada0cd8da919a79bd605c0d41d499db90b785ffddaa09555fb",
+        "text": "398045431f2ebec1a16d69f8f9ff2f887d65ce5dfbfc2bda2f2ed6946b631366"
       }
     },
     {
@@ -1066,7 +1098,8 @@
       "source_post_id": "ВИД-05",
       "thumbnail_note": "Полный широкий кадр с атлетами внутри вертикального 9:16; размытый фон заполняет поля, люди не обрезаны. Длительность ролика - 11,5 с. Текст обложки: «Ниндзя-трасса в движении».",
       "review_versions": {
-        "main": "8065951dea87105bf3e02ffdf7b588c6544771eb4bf779359a49a690130a6a89"
+        "main": "8065951dea87105bf3e02ffdf7b588c6544771eb4bf779359a49a690130a6a89",
+        "text": "980d66d7bc2d5e3f1ccae8c96439110f496d9ccf5454178e4d2877d056f2c2e2"
       }
     },
     {
@@ -1100,7 +1133,8 @@
         "next_action": "После выхода YT-02 заменить прямой просмотр на ссылку опубликованного выпуска; короткий пост не публиковать раньше полного."
       },
       "review_versions": {
-        "main": "b92a3703d5efedfddd74f22cf02528cba10940aff83656f57977040885a36c0a"
+        "main": "b92a3703d5efedfddd74f22cf02528cba10940aff83656f57977040885a36c0a",
+        "text": "5e1500d667712f5300fe939af6a3c474204561c70bed2f4540c29b0204a4946d"
       }
     },
     {
@@ -1129,7 +1163,8 @@
         "interactions": null
       },
       "review_versions": {
-        "main": "d673b0579b50d6f3a377f2e2303780a19b124cd498c069e980ba441f33e4974a"
+        "main": "d673b0579b50d6f3a377f2e2303780a19b124cd498c069e980ba441f33e4974a",
+        "text": "1430b258fcd859ffb8aca1fe473b6f06df975aac4a4054371f34b55844bd1b9c"
       }
     },
     {
@@ -1159,7 +1194,8 @@
       "youtube_tags": [],
       "thumbnail_note": "Полный широкий кадр с атлетами внутри вертикального 9:16; размытый фон заполняет поля, люди не обрезаны. Длительность ролика - 11,5 с. Текст обложки: «Ниндзя-трасса в движении».",
       "review_versions": {
-        "main": "fefb03fede376398aab552a9b7928d751a0c834bed20d9e967dbc89037ce267d"
+        "main": "fefb03fede376398aab552a9b7928d751a0c834bed20d9e967dbc89037ce267d",
+        "text": "9a433692600029f9bfa916dbe6692dc20f7f230d683319052abbc78c44011017"
       }
     },
     {
@@ -1186,7 +1222,8 @@
         "interactions": null
       },
       "review_versions": {
-        "main": "1fdf09561e71921cb5061b1d57b444f7fb0293000a62f0b35cc38cdb21759be8"
+        "main": "1fdf09561e71921cb5061b1d57b444f7fb0293000a62f0b35cc38cdb21759be8",
+        "text": "3fdf48ba2bbec0f67dbba3cde3b6206250337a7e8f5603154c01d5f91979bad2"
       }
     },
     {
@@ -1215,7 +1252,8 @@
         "interactions": null
       },
       "review_versions": {
-        "main": "bff66db6825765a358239f1d03782e696571525419e01f569c0f19e1940ea42c"
+        "main": "bff66db6825765a358239f1d03782e696571525419e01f569c0f19e1940ea42c",
+        "text": "4f3eb9a17d0281ab6ccd5b32e23ed691eddfc7aadaf8c7a2ba957ac7220e1f34"
       }
     },
     {
@@ -1242,7 +1280,8 @@
         "interactions": null
       },
       "review_versions": {
-        "main": "47dd9c5f20c24716882c89655e1b184dec515801daffe6c0a762fb177482ba50"
+        "main": "47dd9c5f20c24716882c89655e1b184dec515801daffe6c0a762fb177482ba50",
+        "text": "f11594434dcb7e8ddbcbcd65cdab9357e6ba749d1263ae9df732824d412e5986"
       }
     },
     {
@@ -1263,13 +1302,13 @@
           "generated": true
         },
         {
-          "file": "media/dec-2026-v21/IG-03-2.webp",
+          "file": "media/dec-2026-v22/IG-03-2.webp",
           "kind": "generated",
           "generated": true,
           "caption": "Концептуальная иллюстрация · ИИ"
         },
         {
-          "file": "media/dec-2026-v21/IG-03-3.webp",
+          "file": "media/dec-2026-v22/IG-03-3.webp",
           "kind": "photo",
           "generated": false,
           "caption": "Реальная фотография · оформление"
@@ -1293,7 +1332,8 @@
         "interactions": null
       },
       "review_versions": {
-        "main": "b0e908983c0f81401d8ce25d3088d5bc3b00261f281d3f01ce10adb2a7b9498b"
+        "main": "1a69c47011f99e8fa08bb1e271b8e266b2307c43ac1daa1ce0a0c102d8559e83",
+        "text": "1fdfc9a6420de88a1370c027cb5a34455c088a1b73a2b9251fd02a46aebe89ec"
       }
     },
     {
@@ -1322,7 +1362,8 @@
         "interactions": null
       },
       "review_versions": {
-        "main": "282ba6a018522e570082db2a595221cf816ce25fb5b2be243537643fd65d9005"
+        "main": "282ba6a018522e570082db2a595221cf816ce25fb5b2be243537643fd65d9005",
+        "text": "438e132189af99a303d15d475d12711a4a74f2f5fe104a71bb9ab3b223e522fe"
       }
     },
     {
@@ -1349,7 +1390,8 @@
         "interactions": null
       },
       "review_versions": {
-        "main": "c7f0daade55c2a8781002214d64b2f81c15d4d10f406070f154ab2f404abde0b"
+        "main": "c7f0daade55c2a8781002214d64b2f81c15d4d10f406070f154ab2f404abde0b",
+        "text": "c1e544bb5a1a160a3184547273138d17e3779893ad366275783908db1910f1a8"
       }
     },
     {
@@ -1376,7 +1418,8 @@
         "interactions": null
       },
       "review_versions": {
-        "main": "d72b8b613717c44258dc6b550501c5a7254e7912714612c7a80ee9b731b78270"
+        "main": "d72b8b613717c44258dc6b550501c5a7254e7912714612c7a80ee9b731b78270",
+        "text": "ea5b68a3495eed5d508e9e3e6722bbd6d46b5cc0c9cf36116012aa2e7365bff5"
       }
     },
     {
@@ -1415,7 +1458,8 @@
         "interactions": null
       },
       "review_versions": {
-        "main": "aef4a165208e90af34a641d042d6ae13f696274a865b16ea267e90f2ad38e8ef"
+        "main": "aef4a165208e90af34a641d042d6ae13f696274a865b16ea267e90f2ad38e8ef",
+        "text": "84e306c5a1b1b233c14c4df01e831d323896b4815832c078ad6c9d59ab9e3d5c"
       }
     },
     {
@@ -1442,7 +1486,8 @@
         "interactions": null
       },
       "review_versions": {
-        "main": "58e342f090e9d922198b13a260c65a0ac8ef813f138ff81d015cadb7e0405fcc"
+        "main": "58e342f090e9d922198b13a260c65a0ac8ef813f138ff81d015cadb7e0405fcc",
+        "text": "3dba8d60f40025888fea4623083c5737740d5952bcfe65c21bdc18ebd25d023a"
       }
     },
     {
@@ -1470,7 +1515,8 @@
         "interactions": null
       },
       "review_versions": {
-        "main": "8492da3a75ac66b30aa208ecd827366df5788213e4c2f08b012323a24809cf91"
+        "main": "8492da3a75ac66b30aa208ecd827366df5788213e4c2f08b012323a24809cf91",
+        "text": "fb4196a0fb547c855fa835f1b07a531778317f119157cc51ca1fa1f6492c540b"
       }
     },
     {
@@ -1499,7 +1545,8 @@
         "interactions": null
       },
       "review_versions": {
-        "main": "1f9b1e39397c1db4bc828be2ae0fb3e8edcf2b77ccd4a0d1c0d83c565e099276"
+        "main": "1f9b1e39397c1db4bc828be2ae0fb3e8edcf2b77ccd4a0d1c0d83c565e099276",
+        "text": "f246b0233ea129f4667432d5cc462fb8f8703e34c0b4b85d6c3667a542839793"
       }
     },
     {
@@ -1514,7 +1561,7 @@
       "text_html": "<p><strong>После активного задания ребёнку может понадобиться короткая передышка, даже если в парке уже есть кафе.</strong></p><p>В планировке мы рассматриваем оба формата: общую зону для семейного отдыха и места для недолгой остановки рядом с играми. Здесь можно дождаться другого участника или решить, куда идти дальше.</p><p>Расположение связываем с соседним оборудованием: где заканчивается игра, куда направляются гости, не перекроют ли ожидающие движение. Решение зависит от состава парка и доступной площади.</p><p>Сайт: <a href=\"https://unitramp.ru/\" target=\"_blank\" rel=\"noopener\">https://unitramp.ru/</a></p>",
       "media_items": [
         {
-          "file": "media/dec-2026-v21/ВК-07-1.webp",
+          "file": "media/dec-2026-v22/ВК-07-1.webp",
           "kind": "photo",
           "generated": false,
           "caption": "Реальная фотография · оформление"
@@ -1526,7 +1573,8 @@
         "interactions": null
       },
       "review_versions": {
-        "main": "3d20e79d8122143937c9faa32d841708e4e6b178a12934c9cdd222fee89bf2ec"
+        "main": "b0a287219cf58c5a5bdbde3fddbaef49df28879ff2e1a4061d22bfe11b249e55",
+        "text": "043ee9ce13fb199e1e33305da8a8aa69889d8df2b6c4a89465318a0d94767aeb"
       }
     },
     {
@@ -1555,7 +1603,8 @@
         "interactions": null
       },
       "review_versions": {
-        "main": "a53f1363f5a729221f964b1f461eddb8fbb0feea4296b8006180e46d8c24a6c6"
+        "main": "a53f1363f5a729221f964b1f461eddb8fbb0feea4296b8006180e46d8c24a6c6",
+        "text": "7ac5f0cc3257e34c76de3bfe1c8fe8ae81a1484932ab0da7b085cf1967ac2c33"
       }
     },
     {
@@ -1584,7 +1633,8 @@
         "interactions": null
       },
       "review_versions": {
-        "main": "4c9c37c71288a1d7fed77cbd94079b7ed8c98bacbe705a00d4517106e5927dd0"
+        "main": "4c9c37c71288a1d7fed77cbd94079b7ed8c98bacbe705a00d4517106e5927dd0",
+        "text": "7f8f78bc33ec097401c067cba93108d90e8ff030cf0c06907f88bb3f6d895d5c"
       }
     },
     {
@@ -1615,7 +1665,8 @@
         "interactions": null
       },
       "review_versions": {
-        "main": "d87de25c2cea9c85e8029cf982c242fa8f9939c9c44bba3119b8b902a0e032be"
+        "main": "d87de25c2cea9c85e8029cf982c242fa8f9939c9c44bba3119b8b902a0e032be",
+        "text": "8375c0eed1cb750795ea62d7929fd9d9648c44322ea4b162a31cfd9e52335558"
       }
     },
     {
@@ -1630,25 +1681,25 @@
       "text_html": "<p><strong>Одинаковая площадь ещё не означает одинаковые возможности для семейного парка.</strong></p><p>В одном зале высокий открытый объём. В другом есть колонны и низко проходящая вентиляция. Мы учитываем эти различия, когда подбираем состав оборудования и разрабатываем планировку.</p><p>Проверяем, где поместится крупная конструкция, как пройдут гости и какое место останется для остальных занятий. Так проект опирается на форму и высоту вашего помещения вместе с его площадью.</p><p>#юнитрамп #помещениеподпарк #активитипарк #семейныйпарк</p>",
       "media_items": [
         {
-          "file": "media/dec-2026-v20/IG-02-1.webp",
+          "file": "media/dec-2026-v22/IG-02-1.webp",
           "kind": "generated",
           "generated": true,
           "caption": "Концептуальная иллюстрация · ИИ"
         },
         {
-          "file": "media/dec-2026-v20/IG-02-2.webp",
+          "file": "media/dec-2026-v22/IG-02-2.webp",
           "kind": "graphic",
           "generated": false,
           "caption": "Проектная визуализация · оформление"
         },
         {
-          "file": "media/dec-2026-v20/IG-02-3.webp",
+          "file": "media/dec-2026-v22/IG-02-3.webp",
           "kind": "graphic",
           "generated": false,
           "caption": "Проектная визуализация · оформление"
         },
         {
-          "file": "media/dec-2026-v20/IG-02-4.webp",
+          "file": "media/dec-2026-v22/IG-02-4.webp",
           "kind": "graphic",
           "generated": false,
           "caption": "Проектная визуализация · оформление"
@@ -1660,7 +1711,8 @@
         "interactions": null
       },
       "review_versions": {
-        "main": "29ff3d3554e5a5ec261fdfb62eedc7cf5c522c527a21a44e87c9177cc9285af9"
+        "main": "b197a4e9207e66b7d33b7e86a8ebf1e7b162f5ea7dfb81fb18ef5b01ab447c16",
+        "text": "1a237f265b689f038808db42acc9709aaa54842ba1e02ff954829f28ca999ad5"
       }
     },
     {
@@ -1691,7 +1743,8 @@
         "interactions": null
       },
       "review_versions": {
-        "main": "b195e70d82fa4303537e07551d8a0767ea5622ecab9ba07d4ddd2c1b83bb8654"
+        "main": "b195e70d82fa4303537e07551d8a0767ea5622ecab9ba07d4ddd2c1b83bb8654",
+        "text": "87ac9c11c1946aaf84cd28af2de8c85fcc14f5d669f6aa124900456e5428dc80"
       }
     },
     {
@@ -1718,7 +1771,8 @@
         "interactions": null
       },
       "review_versions": {
-        "main": "a05ab946ef82e1b7511ef033f7abe360cea6b06dd3aa1b2418768ac6ab678d79"
+        "main": "a05ab946ef82e1b7511ef033f7abe360cea6b06dd3aa1b2418768ac6ab678d79",
+        "text": "02550627e7ab218d8de6e5b635588589da92b406b2ea96260866da03372fad7b"
       }
     },
     {
@@ -1747,7 +1801,8 @@
         "interactions": null
       },
       "review_versions": {
-        "main": "8ecd9fd0567b85e117f6c6fe23b772fd27bfd082a51fda004a4aeb85815a8354"
+        "main": "8ecd9fd0567b85e117f6c6fe23b772fd27bfd082a51fda004a4aeb85815a8354",
+        "text": "d24fd89e82254f5c98501f863d886cf253a2afcb1e89bc7f013f15a4b0431355"
       }
     },
     {
@@ -1776,7 +1831,8 @@
         "interactions": null
       },
       "review_versions": {
-        "main": "b46aac7004362eac9056375c503ebc765776faa97acb4111407dc498db411083"
+        "main": "b46aac7004362eac9056375c503ebc765776faa97acb4111407dc498db411083",
+        "text": "b790207187c749c01539195de5cac47adc2492b413d7dcc4b157bfd300f229dc"
       }
     },
     {
@@ -1803,7 +1859,8 @@
         "interactions": null
       },
       "review_versions": {
-        "main": "753074928adf6bc3f4f3244d31f6861f137989959b3f6a217f3ee71db7931a63"
+        "main": "753074928adf6bc3f4f3244d31f6861f137989959b3f6a217f3ee71db7931a63",
+        "text": "2070f0aa0ddab93531c61ff80a3f3623f9a9cf0f807fb9dde2cda37389e9f130"
       }
     },
     {
@@ -1832,7 +1889,8 @@
         "interactions": null
       },
       "review_versions": {
-        "main": "b8ea38e7e4c0a634116bad4284a6b48a3b3008e4bff093f61cb30bad8fd92ad5"
+        "main": "b8ea38e7e4c0a634116bad4284a6b48a3b3008e4bff093f61cb30bad8fd92ad5",
+        "text": "84338e098cfa4a6d1446b350571359d9820f9f816b16c7ba2227b33ca2abd0cf"
       }
     },
     {
@@ -1859,7 +1917,8 @@
         "interactions": null
       },
       "review_versions": {
-        "main": "32c56e3a21b236f2de72a16bacf3bbd5c94cc9791930bb7427c378cebf4b3ae5"
+        "main": "32c56e3a21b236f2de72a16bacf3bbd5c94cc9791930bb7427c378cebf4b3ae5",
+        "text": "db5499b87789cd0721e94fb141b6e3fa5a2b80fc1a3869483935cd036438e660"
       }
     },
     {
@@ -1885,7 +1944,8 @@
         "interactions": null
       },
       "review_versions": {
-        "main": "6f68245d2fb29116bde6cbc52bfbece26c68fb115b90b98d4547ac30f8e3a6d1"
+        "main": "6f68245d2fb29116bde6cbc52bfbece26c68fb115b90b98d4547ac30f8e3a6d1",
+        "text": "0c412b868f5ec0f4f9f86c84a76b71f0d39e4a76b9bc168a49e52818c852862c"
       }
     },
     {
@@ -1912,7 +1972,8 @@
         "interactions": null
       },
       "review_versions": {
-        "main": "49f8046e531dd9a8c0c2635ed22052175cf6161c99cd9ce011e526292bfe89cd"
+        "main": "49f8046e531dd9a8c0c2635ed22052175cf6161c99cd9ce011e526292bfe89cd",
+        "text": "20d6c9e689d47ba12606a61af70650efed50a7332d2cf1d472780e158196460e"
       }
     },
     {
@@ -1939,7 +2000,8 @@
         "interactions": null
       },
       "review_versions": {
-        "main": "b6c085b036d5402d070929df36eb897c011c2a2d5d673362a9e177f69baf9f65"
+        "main": "b6c085b036d5402d070929df36eb897c011c2a2d5d673362a9e177f69baf9f65",
+        "text": "f9b0b4ef21f22a9c2ed2823682647dca54c0a6c18a528ab7415c576cb5994ead"
       }
     }
   ]

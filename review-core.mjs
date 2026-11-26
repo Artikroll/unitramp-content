@@ -41,7 +41,7 @@ export function validateImport(pkg,files){
  if(pkg.schema!==SCHEMA||pkg.month!=='2026-12'||!Array.isArray(pkg.records)||pkg.records.length>500)throw Error('Это не файл согласования декабря UNITRAMP');
  const keys=new Set(),audio=new Set();
  for(const r of pkg.records){
-  if(typeof r.key!=='string'||!/^[A-ZА-ЯЁ0-9-]+::(main|ig)$/.test(r.key)||keys.has(r.key))throw Error('Некорректная запись поста');keys.add(r.key);
+  if(typeof r.key!=='string'||!/^[A-ZА-ЯЁ0-9-]+::(main|ig|text)$/.test(r.key)||keys.has(r.key))throw Error('Некорректная запись поста');keys.add(r.key);
   if(!['','approved','rework','remove'].includes(r.decision||'')||typeof r.notes!=='string'||r.notes.length>100000||!Array.isArray(r.attachments)||r.attachments.length>100)throw Error('Некорректные замечания');
   if(!Array.isArray(r.tags)||r.tags.some(x=>!['Текст','Фото / баннер','Видео','Другое'].includes(x)))throw Error('Некорректные метки');
   if(!Number.isFinite(Date.parse(r.updatedAt)))throw Error('Некорректная дата замечания');
