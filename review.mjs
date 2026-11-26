@@ -51,7 +51,7 @@ function renderList(){
 function updateSummary(){
  const count={pending:0,approved:0,rework:0,remove:0};for(const t of targets.values())count[statusOf(t)]++;
  for(const k in count)$('n-'+k).textContent=count[k];const checked=targets.size-count.pending;$('progress-fill').style.width=checked/targets.size*100+'%';
- $('plan-count').textContent=posts.length+' поста · '+targets.size+' версий с учётом Instagram личных каналов · проверено '+checked;
+ $('plan-count').textContent=posts.length+' поста · '+targets.size+' версий для согласования · проверено '+checked;
 }
 function updateDecision(){
  const t=targets.get(currentKey);if(!t)return;const r=recordFor(t),s=statusOf(t),el=$('current-decision');el.textContent=labels[s];el.className='decision '+s;
@@ -84,7 +84,7 @@ async function renderAudios(){
  }
 }
 function renderCurrent(){
- const t=targets.get(currentKey),r=recordFor(t),p=t.post;error('',true);$('post-id').textContent=p.id;$('post-date').textContent=p.date.slice(8)+'.12 · '+p.time+' ЕКБ';$('post-channel').textContent=t.label;$('post-title').textContent=p.title;$('post-format').textContent=t.variant==='ig'?'Instagram · адаптация':p.format;$('review-for').textContent=p.id+' · твоё решение';
+ const t=targets.get(currentKey),r=recordFor(t),p=t.post;error('',true);$('post-id').textContent=p.id;$('post-date').textContent=p.date.slice(8)+'.12 · '+p.time+' ЕКБ';$('post-channel').textContent=t.label;$('post-title').textContent=p.title;$('post-format').textContent=t.variant==='ig'?'Instagram · адаптация':p.format;$('post-format').textContent+=(p.publication_dependency?' · После полного FPV-выпуска 9 декабря':'');$('review-for').textContent=p.id+' · твоё решение';
  $('notes').value=r.notes;$('post-text').replaceChildren(safeHTML(t.html));
  const variants=visibleTargets(p);$('variant-tabs').innerHTML=variants.length>1?variants.map(x=>'<button type="button" data-variant="'+x.variant+'" class="'+(x.key===currentKey?'active':'')+'" '+(mediaBusy?'disabled':'')+'>'+esc(x.variant==='ig'?'Instagram':'Telegram + Макс')+'</button>').join(''):'';
  const extra=[];if(p.poll)extra.push('ОПРОС\n'+p.poll.question+'\n'+p.poll.options.map((v,i)=>(i+1)+'. '+v).join('\n')+'\n'+(p.poll.multiple_answers?'Можно выбрать несколько ответов':'Один вариант ответа'));if(p.first_comment)extra.push('ПЕРВЫЙ КОММЕНТАРИЙ\n'+p.first_comment);
@@ -194,7 +194,7 @@ async function init(){
   const res=await fetch('./review-data.json?v=15',{cache:'no-store'});if(!res.ok)throw Error('План недоступен');const data=await res.json();if(data.month!=='2026-12'||!Array.isArray(data.posts)||data.posts.length===0||new Set(data.posts.map(p=>p.id)).size!==data.posts.length)throw Error('Некорректная версия плана');
   const live=await fetch('./dec-2026.json?reviewSource='+data.source_sha256,{cache:'no-store'});if(!live.ok)throw Error('Актуальный план недоступен');const bytes=await live.arrayBuffer();const hash=[...new Uint8Array(await crypto.subtle.digest('SHA-256',bytes))].map(b=>b.toString(16).padStart(2,'0')).join('');if(hash!==data.source_sha256)throw Error('План обновлён. Согласование новой версии ещё готовится; прежние замечания сохранены.');
   posts=data.posts;window.reviewDataVersion=data.version;
-  for(const p of posts){const personal=!!p.max_text;targets.set(p.id+'::main',{key:p.id+'::main',post:p,variant:'main',version:p.review_versions.main,text:p.text,html:p.text_html||p.text,media:p.media_items||[],label:(channelNames[p.channel]||p.channel)+(personal?' + Макс':'')});if(personal)targets.set(p.id+'::ig',{key:p.id+'::ig',post:p,variant:'ig',version:p.review_versions.ig,text:p.instagram_text,html:p.instagram_html||p.instagram_text,media:p.instagram_media||p.media_items||[],label:(channelNames[p.channel]||p.channel).replace(' · Telegram','')+' · Instagram'});}
+  for(const p of posts){const personal=!!p.max_text;targets.set(p.id+'::main',{key:p.id+'::main',post:p,variant:'main',version:p.review_versions.main,text:p.text,html:p.text_html||p.text,media:p.media_items||[],label:(channelNames[p.channel]||p.channel)+(personal?' + Макс':'')});if(personal&&p.instagram_text&&p.review_versions.ig)targets.set(p.id+'::ig',{key:p.id+'::ig',post:p,variant:'ig',version:p.review_versions.ig,text:p.instagram_text,html:p.instagram_html||p.instagram_text,media:p.instagram_media||p.media_items||[],label:(channelNames[p.channel]||p.channel).replace(' · Telegram','')+' · Instagram'});}
   await initDB();for(const c of [...new Set(posts.map(p=>p.channel))]){const op=document.createElement('option');op.value=c;op.textContent=channelNames[c]||c;$('channel').append(op);}
   const h=decodeURIComponent(location.hash.slice(1)).split('/'),key=h[0]+'::'+(h[1]||'main');currentKey=targets.has(key)?key:posts[0].id+'::main';
   $('workspace').hidden=false;$('loading').hidden=true;$('export').disabled=false;if(matchMedia('(max-width:980px)').matches)$('postnav').open=false;
