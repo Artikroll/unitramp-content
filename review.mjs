@@ -1,10 +1,10 @@
-import{SCHEMA,LABELS,effective,touched,safeHTML,mediaURL,zipStore,unzipStored,validateImport}from'./review-core.mjs?v=26';
+import{SCHEMA,LABELS,effective,touched,safeHTML,mediaURL,zipStore,unzipStored,validateImport}from'./review-core.mjs?v=27';
 const $=id=>document.getElementById(id), esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const channelNames={'TG компании':'Юнитрамп · Telegram','TG Романа':'Роман Сотников · Telegram','TG Кирилла':'Кирилл Шувалов · Telegram','TG Екатерины':'Екатерина Тюкавкина · Telegram','TG Оксаны':'Оксана Журман · Telegram','VK':'ВК · посты','VK Клипы':'ВК · клипы','Instagram':'Instagram компании',YouTube:'YouTube · полный выпуск','YouTube Shorts':'YouTube Shorts','IG Reels':'Instagram · Reels'};
 const textOnly=new URL(location.href).searchParams.get('mode')==='text',mainVariant=textOnly?'text':'main';
 const tags=textOnly?['Текст','Другое']:['Текст','Фото / баннер','Видео','Другое'],labels=LABELS;
 if(textOnly){document.body.classList.add('text-only');document.querySelector('.heading h1').textContent='Проверка текстов декабря';document.querySelector('.heading p').textContent='Только тексты. Решения по баннерам хранятся отдельно.';document.querySelector('.intro h2').textContent='Сначала смысл. Потом решение.';}
-const modeLink=document.getElementById('mode-link');if(textOnly&&modeLink){modeLink.href='review.html?v=26';modeLink.textContent='Полные посты ↗';}
+const modeLink=document.getElementById('mode-link');if(textOnly&&modeLink){modeLink.href='review.html?v=27';modeLink.textContent='Полные посты ↗';}
 let db=null,storageFailed=false,pending=0,queue=Promise.resolve(),posts=[],targets=new Map(),records=new Map(),audioCache=new Map(),currentKey='',slide=0,urls=[],mediaBusy=false,recording=null,recognition=null,captureToken=0,memoryDirty=false,saveTimer,toastTimer;
 const statusOf=t=>effective(records.get(t.key),t.version);
 function toast(s){$('toast').textContent=s;$('toast').hidden=false;clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('toast').hidden=true,4500);}
@@ -93,7 +93,7 @@ function renderCurrent(){
  const variants=visibleTargets(p);$('variant-tabs').innerHTML=variants.length>1?variants.map(x=>'<button type="button" data-variant="'+x.variant+'" class="'+(x.key===currentKey?'active':'')+'" '+(mediaBusy?'disabled':'')+'>'+esc(x.variant==='ig'?'Instagram':'Telegram + Макс')+'</button>').join(''):'';
  const extra=[];if(p.poll)extra.push('ОПРОС\n'+p.poll.question+'\n'+p.poll.options.map((v,i)=>(i+1)+'. '+v).join('\n')+'\n'+(p.poll.multiple_answers?'Можно выбрать несколько ответов':'Один вариант ответа'));if(p.first_comment)extra.push('ПЕРВЫЙ КОММЕНТАРИЙ\n'+p.first_comment);
  $('extras').replaceChildren();for(const s of extra){const box=document.createElement('div');box.className='extras';box.textContent=s;$('extras').append(box);}
- renderMedia();renderAudios();renderTags();updateDecision();renderList();updateSteps();history.replaceState(null,'','#'+encodeURIComponent(p.id)+'/'+t.variant);if(modeLink)modeLink.href='review.html?'+(textOnly?'v=26':'mode=text&v=26')+'#'+encodeURIComponent(p.id)+'/'+(textOnly?'main':'text');
+ renderMedia();renderAudios();renderTags();updateDecision();renderList();updateSteps();history.replaceState(null,'','#'+encodeURIComponent(p.id)+'/'+t.variant);if(modeLink)modeLink.href='review.html?'+(textOnly?'v=27':'mode=text&v=27')+'#'+encodeURIComponent(p.id)+'/'+(textOnly?'main':'text');
 }
 function updateSteps(){const a=filtered(),id=targets.get(currentKey)?.post.id,i=a.findIndex(p=>p.id===id);$('position').textContent=(i<0?'—':i+1)+' / '+a.length;$('prev').disabled=mediaBusy||i<=0;$('next').disabled=mediaBusy||i<0||i>=a.length-1;}
 function go(key){
